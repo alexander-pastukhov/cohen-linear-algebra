@@ -20,3 +20,28 @@ ggplot(data=all_vectors, aes(x=x, y=y, xend=xend, yend=yend, color=Vector)) +
   coord_equal()
 ```
 
+## Chapter 3
+
+### Exercise 1 {-}
+```{r}
+v1 <- c(1, 2, 3, 4, 5)
+v2 <- c(2, 3, 4, 5, 6)
+v3 <- c(3, 4, 5, 6, 7)
+w <- c(-1, 3, 2)
+result <- v1 * w[1] + v2 * w[2] + v3* w[3]
+```
+
+### Exercise 2 {-}
+
+```{r}
+v <- c(7, 4, -5, 8, 3)
+o <- rep(1, length(v))
+ave <- dot(v, o) / length(v)
+```
+
+### Exercise 3 {-}
+```{r}
+v <- c(7, 4, -5, 8, 3)
+w <- runif(length(v))
+wAve <- dot(v, w)
+```
