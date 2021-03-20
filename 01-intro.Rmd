@@ -1,0 +1,4 @@
+# Introduction {#intro}
+
+This is an R-version of the code for ["Linear Algebra: Theory, Intuition, Code"](https://www.amazon.com/Linear-Algebra-Theory-Intuition-Code/dp/9083136604) by [Mike X Cohen](http://www.mikexcohen.com/).
+
