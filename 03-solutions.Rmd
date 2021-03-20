@@ -1,0 +1,22 @@
+# Solutions for code challenges
+
+## Chapter 2
+
+```{r}
+library(ggplot2)
+v <- c(1, 2)
+s <- rnorm(10)
+
+all_vectors <- data.frame(xend = c(v[1], v[1] * s),
+                          yend = c(v[2], v[2] * s),
+                          Vector = c("Original", rep("Scaled", length(s))),
+                          x = 0,
+                          y = 0)
+
+ggplot(data=all_vectors, aes(x=x, y=y, xend=xend, yend=yend, color=Vector)) + 
+  geom_segment(arrow= arrow(length = unit(0.03, "npc"))) +
+  xlim(-4, 4) +
+  ylim(-4, 4) + 
+  coord_equal()
+```
+

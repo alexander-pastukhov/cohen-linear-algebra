@@ -1,0 +1,48 @@
+# Code
+
+## Chapter 2
+
+### Code block 2.1/2.2 {-}
+```{r}
+aScalar <- 4
+```
+
+### Code block 2.3/2.4 {-}
+This is, admittedly, a "fancy" [ggplot2](https://ggplot2.tidyverse.org/) rather than base R version. But _ggplot2_ figures do look so much better.
+```{r}
+library(ggplot2)
+
+v <- c(2, -1)
+ggplot(data=NULL, aes(x = c(0, v[1]), y=c(0, v[2])))  + 
+  geom_line() + 
+  geom_point(aes(x=v[1], y=v[2])) + 
+  scale_x_continuous(name=expression(paste(X[1], " dim.")), limits = c(-3, 3)) + 
+  scale_y_continuous(name=expression(paste(X[2], " dim.")), limits = c(-3, 3)) + 
+  coord_equal()
+```
+
+### Code block 2.5/2.6 {-}
+In R _atomic_ vectors are created via `c()` function but, technically, they are neither column, nor row vectors. [Matrix multiplication manual](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matmult.html) states that it: "_Multiplies two matrices, if they are conformable. If one argument is a vector, it will be promoted to either a row or column matrix to make the two arguments conformable. If both are vectors of the same length, it will return the inner product (as a matrix)._" At the same time, _transposing_ an atomic vector `t(c(...))` transforms it into a single row matrix, thus a row vector, hinting, that deep down an outcome of `c()` is a column vector.
+
+To avoid ambiguity, I will use single row and single column matrices for, respectively, row and column vectors.
+
+```{r}
+v1 <- matrix(c(2, 5, 5, 7), nrow = 1) # row vector
+v2 <- matrix(c(2, 5, 5, 7), ncol = 1) # column vector
+```
+
+### Code block 2.7/2.8 {-}
+```{r}
+v1 <- matrix(c(2, 5, 5, 7), nrow = 1) # row vector
+v2 <- t(v1)                           # column vector
+```
+ 
+
+#### Code block 2.9/2.10 {-}
+For this example, you can use atomic vectors directly, of course, without turning them into a single column matrix.
+```{r}
+v1 <- matrix(c(2, 5, 4, 7), ncol=1)
+v2 <- matrix(c(4, 1, 0, 2), ncol=1)
+v3 <- 4 * v1  - 2 * v2
+```
+
