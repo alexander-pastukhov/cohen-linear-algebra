@@ -43,5 +43,6 @@ ave <- dot(v, o) / length(v)
 ```{r}
 v <- c(7, 4, -5, 8, 3)
 w <- runif(length(v))
-wAve <- dot(v, w)
+wAve <- dot(v, w / sum(w))
 ```
+
