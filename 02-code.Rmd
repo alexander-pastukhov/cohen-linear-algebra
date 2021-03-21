@@ -197,3 +197,50 @@ A <- matrix(runif(4 * 4), nrow=4)
 tr <- psych::tr(A)
 ```
 
+
+## Chapter 6
+### Code block 6.1/6.2 {-}
+```{r}
+M1 <- matrix(runif(n=4*3), nrow=4, ncol=3)
+M2 <- matrix(runif(n=3*5), nrow=3, ncol=5)
+C <- M1 %*% M2
+```
+
+### Code block 6.3/6.4 {-}
+```{r}
+A <- matrix(runif(n=2*2), nrow=2, ncol=2)
+B <- matrix(runif(n=2*2), nrow=2, ncol=2)
+C1 <- A %*% B
+C2 <- B %*% A
+```
+
+### Code block 6.5/6.6 {-}
+```{r}
+M1 <- matrix(runif(n=4*3), nrow=4, ncol=3)
+M2 <- matrix(runif(n=4*3), nrow=4, ncol=3)
+C <- M1 * M2
+```
+
+
+### Code block 6.7/6.8 {-}
+Note that by default, matrix is constructed by column. To match the code, we need to use `byrow=TRUE` option.
+```{r}
+A <- matrix(c(1, 2, 3, 4, 5, 6), nrow=2, byrow = TRUE)
+c(A)
+```
+
+### Code block 6.9/6.10 {-}
+Here, I use `sum(diag())` instead of the dedicated `psych::tr()`.
+```{r}
+A <- matrix(runif(n=4*3), nrow=4, ncol=3)
+B <- matrix(runif(n=4*3), nrow=4, ncol=3)
+f <- sum(diag(t(A) %*% B))
+```
+
+### Code block 6.11/6.12 {-}
+```{r}
+A <- matrix(runif(n=4*3), nrow=4, ncol=3)
+norm(A, type="F")
+```
+
+

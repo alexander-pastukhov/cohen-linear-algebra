@@ -75,3 +75,45 @@ for(d in 1:min(dim(D))){
 }
 ```
 
+## Chapter 6
+
+### Exercise 1 {-}
+```{r}
+A <- matrix(runif(n=2*4), nrow=2, ncol=4)
+B <- matrix(runif(n=4*3), nrow=4, ncol=3)
+C1 <- matrix(0, nrow=2, ncol=3)
+for(i in 1:4){
+  C1 <- C1 + outer(A[, i], B[i, ])
+}
+C1 - A %*% B
+```
+
+### Exercise 2 {-}
+```{r}
+D <- diag(1:4)
+A <- matrix(runif(n=4*4), nrow=4, ncol=4)
+C1 <- D * A
+C2 <- D %*% A
+print(diag(C1))
+print(diag(C2))
+```
+
+### Exercise 3 {-}
+```{r}
+A <- diag(runif(3))
+C1 <- (t(A) + A) / 2
+C2 <- t(A) %*% A
+C1 - sqrt(C2)
+```
+
+### Exercise 4 {-}
+Note that `norm()` requires a matrix as an input, therefore, we convert an atomic vector to a matrix for the norm computation.
+```{r}
+m <- 5
+A <- matrix(runif(n=m*m), nrow=m, ncol=m)
+v <- runif(n=m)
+LHS <- norm(A %*% v, type = "F")
+RHS <- norm(A, type = "F") * norm(matrix(v), type="F")
+RHS - LHS # should always be positive
+```
+
