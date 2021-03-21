@@ -242,5 +242,32 @@ f <- sum(diag(t(A) %*% B))
 A <- matrix(runif(n=4*3), nrow=4, ncol=3)
 norm(A, type="F")
 ```
+## Chapter 7
 
+### Code block 7.1/7.2 {-}
+You can use either `rankMatrix()` function from the _Matrix_ library, which in addition to the rank itself, returns information on the method used to estimate the rank via attributes. Alternatively, you can use `Rank()` from the _pracma_ library.
+```{r}
+A <- matrix(runif(n=3*6), nrow=3, ncol=6)
+r1 <- Matrix::rankMatrix(A)
+r2 <- pracma::Rank(A)
+```
 
+### Code block 7.3/7.4 {-}
+```{r}
+s <- runif(n=1)
+A <- matrix(runif(n=3*5), nrow=3, ncol=5)
+r1 <- Matrix::rankMatrix(A)
+r2 <- Matrix::rankMatrix(s * A)
+cat(r1, r2)
+```
+
+### Code block 7.5/7.6 {-}
+Source code for `rankMatrix()` function from _Matrix_ library.
+```{r}
+Matrix::rankMatrix
+```
+
+Source code for `Rank()` function from _pracma_ library.
+```{r}
+pracma::Rank
+```

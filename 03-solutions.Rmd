@@ -117,3 +117,21 @@ RHS <- norm(A, type = "F") * norm(matrix(v), type="F")
 RHS - LHS # should always be positive
 ```
 
+## Chapter 7
+
+### Exercise 1 {-}
+```{r}
+A <- matrix(runif(9 * 2), nrow=9, ncol=2)
+B <- matrix(runif(2 * 16), nrow=2, ncol=16)
+C <- A %*% B
+```
+
+### Exercise 2 {-}
+```{r}
+Z <- matrix(0, nrow=5, ncol=5)
+N <- matrix(runif(5 * 5), nrow=5, ncol=5)
+ZN <-  Z + N * .Machine$double.eps * 1e-307
+cat(Matrix::rankMatrix(Z))
+cat(Matrix::rankMatrix(ZN))
+cat(norm(ZN, type = "F"))
+```
