@@ -245,7 +245,7 @@ norm(A, type="F")
 ## Chapter 7
 
 ### Code block 7.1/7.2 {-}
-You can use either `rankMatrix()` function from the _Matrix_ library, which in addition to the rank itself, returns information on the method used to estimate the rank via attributes. Alternatively, you can use `Rank()` from the _pracma_ library.
+You can use either `rankMatrix()` function from the _Matrix_ library, which in addition to the rank itself, returns information on the method used to estimate the rank via attributes. Alternatively, you can use `Rank()` from the _pracma_ library./6.12 {-}
 ```{r}
 A <- matrix(runif(n=3*6), nrow=3, ncol=6)
 r1 <- Matrix::rankMatrix(A)
@@ -271,3 +271,12 @@ Source code for `Rank()` function from _pracma_ library.
 ```{r}
 pracma::Rank
 ```
+
+## Chapter 8
+### Code block 8.1/8.2 {-}
+
+```{r}
+A <- matrix(runif(n=3*4), nrow=3, ncol=4)
+pracma::nullspace(A)
+```
+
