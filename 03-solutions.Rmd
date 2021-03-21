@@ -36,13 +36,42 @@ result <- v1 * w[1] + v2 * w[2] + v3* w[3]
 ```{r}
 v <- c(7, 4, -5, 8, 3)
 o <- rep(1, length(v))
-ave <- dot(v, o) / length(v)
+ave <- pracma::dot(v, o) / length(v)
 ```
 
 ### Exercise 3 {-}
 ```{r}
 v <- c(7, 4, -5, 8, 3)
 w <- runif(length(v))
-wAve <- dot(v, w / sum(w))
+wAve <- pracma::dot(v, w / sum(w))
+```
+
+## Chapter 5
+
+### Exercise 1 {-}
+```{r}
+A <- matrix(runif(n=4*2), nrow=4, ncol=2)
+B <- matrix(runif(n=4*2), nrow=4, ncol=2)
+C <- matrix(NA, nrow=2, ncol=2)
+for(coli in 1:2){
+  for(colj in 1:2){
+    C[coli, colj] <- pracma::dot(A[, coli], B[, colj])
+  }
+}
+```
+
+### Exercise 2 {-}
+```{r}
+A <- matrix(runif(n=4*4), nrow=4, ncol=4)
+Al <- pracma::tril(A)
+S <- Al + t(Al)
+```
+
+### Exercise 3 {-}
+```{r}
+D <- matrix(0, nrow=4, ncol=8)
+for(d in 1:min(dim(D))){
+  D[d, d] <- d
+}
 ```
 
