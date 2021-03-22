@@ -177,3 +177,17 @@ isSymmetric(A1)
 isSymmetric(A2)
 ```
 
+## Chapter 10 {-}
+### Exercise 1 {-}
+```{r}
+A <- matrix(c(2, 0, -3, 3, 1, 4, 1, 0, -1), nrow=3, byrow=TRUE)
+x <- matrix(c(2, 3, 4), ncol=1)
+b <- A %*% x
+```
+
+### Exercise 2 {-}
+```{r}
+A <- matrix(runif(n=3*6), nrow=3, ncol=6)
+pracma::rref(A)
+```
+
