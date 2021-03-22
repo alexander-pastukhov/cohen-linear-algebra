@@ -287,3 +287,19 @@ print(Conj(Z))
 v <- c(0, 1i)
 pracma::dot(v, v)
 ```
+
+## Chapter 10 {-}
+### Code block 10.1/10.2 {-}
+R implementation of [LU matrix decomposition](https://stat.ethz.ch/R-manual/R-patched/library/Matrix/html/LU-class.html) works only on _square_, positive definite matrices.
+```{r}
+# Using the square matrix from practice problem b
+A <- matrix(c(2, 0, 1, 1, 1, 2, 3, 1, 3), nrow=3, byrow=TRUE)
+lu(A)
+```
+
+### Code block 10.3/10.4 {-}
+```{r}
+A <- matrix(runif(n=2*4), nrow=2, ncol=4)
+pracma::rref(A)
+```
+
