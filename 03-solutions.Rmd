@@ -1,6 +1,6 @@
-# Solutions for code challenges
+# Solutions for code challenges {-}
 
-## Chapter 2
+## Chapter 2 {-}
 
 ```{r}
 library(ggplot2)
@@ -20,7 +20,7 @@ ggplot(data=all_vectors, aes(x=x, y=y, xend=xend, yend=yend, color=Vector)) +
   coord_equal()
 ```
 
-## Chapter 3
+## Chapter 3 {-}
 
 ### Exercise 1 {-}
 ```{r}
@@ -46,7 +46,7 @@ w <- runif(length(v))
 wAve <- pracma::dot(v, w / sum(w))
 ```
 
-## Chapter 5
+## Chapter 5 {-}
 
 ### Exercise 1 {-}
 ```{r}
@@ -75,7 +75,7 @@ for(d in 1:min(dim(D))){
 }
 ```
 
-## Chapter 6
+## Chapter 6 {-}
 
 ### Exercise 1 {-}
 ```{r}
@@ -117,7 +117,7 @@ RHS <- norm(A, type = "F") * norm(matrix(v), type="F")
 RHS - LHS # should always be positive
 ```
 
-## Chapter 7
+## Chapter 7 {-}
 
 ### Exercise 1 {-}
 ```{r}
@@ -136,7 +136,7 @@ print(pracma::Rank(ZN))
 print(norm(ZN, type = "F"))
 ```
 
-### Chapter 8
+## Chapter 8 {-}
 ### Exercise 1 {-}
 ```{r}
 A <- matrix(runif(n=4*3), nrow=4, ncol=3) %*% matrix(runif(n=3*4), nrow=3, ncol=4)

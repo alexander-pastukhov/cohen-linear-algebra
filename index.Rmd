@@ -1,15 +1,15 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
+title: 'R-version of the code for "Linear Algebra: Theory, Intuition, Code" by _Mike X Cohen_'
+author: "Alexander (Sasha) Pastukhov"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+description: "R-version of the code for _Linear Algebra: Theory, Intuition, Code_ by Mike X Cohen"
 ---
 
-# Introduction {#intro}
+# Introduction {-}
 
-This is an R-version of the code for ["Linear Algebra: Theory, Intuition, Code"](https://www.amazon.com/Linear-Algebra-Theory-Intuition-Code/dp/9083136604) by [Mike X Cohen](http://www.mikexcohen.com/).
+This is an R-version of the code for ["Linear Algebra: Theory, Intuition, Code"](https://www.amazon.com/Linear-Algebra-Theory-Intuition-Code/dp/9083136604) by [Mike X Cohen](http://www.mikexcohen.com/). I have tried to keep the code as close as possible to the original. Instead of importing libraries, I use `library::` disambiguation to make it easier to understand which function belongs to which package.

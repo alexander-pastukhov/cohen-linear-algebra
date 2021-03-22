@@ -1,6 +1,6 @@
-# Code
+# Code {-}
 
-## Chapter 2
+## Chapter 2 {-}
 
 ### Code block 2.1/2.2 {-}
 ```{r}
@@ -46,7 +46,7 @@ v2 <- matrix(c(4, 1, 0, 2), ncol=1)
 v3 <- 4 * v1  - 2 * v2
 ```
 
-## Chapter 3
+## Chapter 3 {-}
 
 ### Code block 3.1/3.2 {-}
 There is no _explicit_ dot product function in base R but there are multiple implementations in various libraries such as [pracma](https://github.com/cran/pracma) used here.
@@ -104,7 +104,7 @@ vMag <- norm(v, type="2")
 v_unit <- v / vMag
 ```
 
-## Chapter 5
+## Chapter 5 {-}
 
 ### Code block 5.1/5.2 {-}
 There is only one way to transpose a matrix in R: via function [t()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/t.html).
@@ -117,8 +117,8 @@ At1 <- t(A)
 ### Code block 5.3/5.4 {-}
 ```{r}
 I <- diag(4)
-O <- rep(1, times=4)
-Z <- matrix(rep(0, 4 * 4), nrow=4, ncol=4)
+O <- matrix(1, nrow=4, ncol=1) # or rep(1, times=4) to create an atomic vector
+Z <- matrix(0, nrow=4, ncol=4)
 ```
 
 ### Code block 5.5/5.6 {-}
@@ -181,7 +181,7 @@ tr <- pracma::Trace(A)
 ```
 
 
-## Chapter 6
+## Chapter 6 {-}
 ### Code block 6.1/6.2 {-}
 ```{r}
 M1 <- matrix(runif(n=4*3), nrow=4, ncol=3)
@@ -213,11 +213,10 @@ c(A)
 ```
 
 ### Code block 6.9/6.10 {-}
-Here, I use `sum(diag())` instead of the dedicated `psych::tr()`.
 ```{r}
 A <- matrix(runif(n=4*3), nrow=4, ncol=3)
 B <- matrix(runif(n=4*3), nrow=4, ncol=3)
-f <- sum(diag(t(A) %*% B))
+f <- pracma::Trace(t(A) %*% B)
 ```
 
 ### Code block 6.11/6.12 {-}
@@ -226,10 +225,10 @@ A <- matrix(runif(n=4*3), nrow=4, ncol=3)
 norm(A, type="F")
 ```
 
-## Chapter 7
+## Chapter 7 {-}
 
 ### Code block 7.1/7.2 {-}
-you can use `Rank()` from the _pracma_ library. Alternatively, you can use `rankMatrix()` function from the _Matrix_ library, which in addition to the rank itself, returns information on the method used to estimate the rank via attributes. 
+You can use `Rank()` from the _pracma_ library. Alternatively, you can use `rankMatrix()` function from the _Matrix_ library, which in addition to the rank itself, returns information on the method used to estimate the rank via attributes. 
 ```{r}
 A <- matrix(runif(n=3*6), nrow=3, ncol=6)
 r1 <- pracma::Rank(A)
@@ -242,7 +241,7 @@ s <- runif(n=1)
 A <- matrix(runif(n=3*5), nrow=3, ncol=5)
 r1 <- pracma::Rank(A)
 r2 <- pracma::Rank(s * A)
-cat(r1, r2)
+print(c(r1, r2))
 ```
 
 ### Code block 7.5/7.6 {-}
@@ -256,7 +255,7 @@ Source code for `rankMatrix()` function from _Matrix_ library.
 Matrix::rankMatrix
 ```
 
-## Chapter 8
+## Chapter 8 {-}
 
 ### Code block 8.1/8.2 {-}
 ```{r}
@@ -264,7 +263,7 @@ A <- matrix(runif(n=3*4), nrow=3, ncol=4)
 pracma::nullspace(A)
 ```
 
-## Chapter 9
+## Chapter 9 {-}
 ### Code block 9.1/9.2 {-}
 ```{r}
 z <- complex(real=3, imaginary=4)
