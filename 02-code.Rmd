@@ -8,7 +8,7 @@ aScalar <- 4
 ```
 
 ### Code block 2.3/2.4 {-}
-This is, admittedly, a "fancy" [ggplot2](https://ggplot2.tidyverse.org/) rather than base R version. But _ggplot2_ figures do look so much better.
+This is a [ggplot2](https://ggplot2.tidyverse.org/) rather than base R version. But _ggplot2_ figures do look so much better.
 ```{r}
 library(ggplot2)
 
@@ -22,7 +22,7 @@ ggplot(data=NULL, aes(x = c(0, v[1]), y=c(0, v[2])))  +
 ```
 
 ### Code block 2.5/2.6 {-}
-In R _atomic_ vectors are created via `c()` function but, technically, they are neither column, nor row vectors. [Matrix multiplication manual](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matmult.html) states that it: "_Multiplies two matrices, if they are conformable. If one argument is a vector, it will be promoted to either a row or column matrix to make the two arguments conformable. If both are vectors of the same length, it will return the inner product (as a matrix)._" At the same time, _transposing_ an atomic vector `t(c(...))` transforms it into a single row matrix, thus a row vector, hinting, that deep down an outcome of `c()` is a column vector.
+In R _atomic_ vectors are created via `c()` function but, technically, they are neither column, nor row vectors. [Matrix multiplication manual](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matmult.html) states that it: "_Multiplies two matrices, if they are conformable. If one argument is a vector, it will be promoted to either a row or column matrix to make the two arguments conformable. If both are vectors of the same length, it will return the inner product (as a matrix)._" At the same time, _transposing_ an atomic vector `t(c(...))` transforms it into a single row matrix, thus a row vector, hinting that deep down an outcome of `c()` is a column vector.
 
 To avoid ambiguity, I will use single row and single column matrices for, respectively, row and column vectors.
 
@@ -39,7 +39,7 @@ v2 <- t(v1)                           # column vector
  
 
 ### Code block 2.9/2.10 {-}
-For this example, you can use atomic vectors directly, of course, without turning them into a single column matrix.
+For this example, you can also use atomic vectors directly without turning them into a single column matrix.
 ```{r}
 v1 <- matrix(c(2, 5, 4, 7), ncol=1)
 v2 <- matrix(c(4, 1, 0, 2), ncol=1)
@@ -49,28 +49,16 @@ v3 <- 4 * v1  - 2 * v2
 ## Chapter 3
 
 ### Code block 3.1/3.2 {-}
-Oddly enough, there is no _explicit_ dot product function in base R but there are multiple implementations in various libraries such as [pracma](https://github.com/cran/pracma).
+There is no _explicit_ dot product function in base R but there are multiple implementations in various libraries such as [pracma](https://github.com/cran/pracma) used here.
 ```{r}
-library(pracma)
-
 v1 <- matrix(c(2, 5, 4, 7), ncol=1)
 v2 <- matrix(c(4, 1, 0, 2), ncol=1)
-dp <- dot(v1, v2)
+dp <- pracma::dot(v1, v2)
 ```
 
-However, a matrix multiplication of _atomic_ vectors (we can convert a matrix back to an atomic vector via `c()` or `as.vector()`) gives us the dot product (well, the _inner_ product, which is why the results is 1-by-1 matrix).
+However, a matrix multiplication of _atomic_ vectors (we can convert a matrix back to an atomic vector via `c()` or `as.vector()`) gives us the dot product (well, the _inner_ product, which is why the result is a 1-by-1 matrix).
 ```{r}
 dp <- c(v1) %*% as.vector(v2)
-```
-
-One can, of course, implement it by hand (`*` here is elementwise multiplication, a.k.a. Hadamard product).
-```{r}
-dp <- sum(v1 * v2)
-```
-
-Or use matrix multiplication with a transpose of the first vector (`%*%` is matrix multiplication).
-```{r}
-dp <- t(v1) %*% v2
 ```
 
 ### Code block 3.3/3.4 {-}
@@ -78,9 +66,9 @@ dp <- t(v1) %*% v2
 l1 <- 1
 l2 <- 2
 l3 <- -3
-v1 <- matrix(c(4, 5, 1))
-v2 <- matrix(c(-4, 0, -4))
-v3 <- matrix(c(1, 3, 2))
+v1 <- matrix(c(4, 5, 1), ncol=1)
+v2 <- matrix(c(-4, 0, -4), ncol=1)
+v3 <- matrix(c(1, 3, 2), ncol=1)
 l1 * v1 + l2 * v2 + l3 * v3
 ```
 
@@ -95,23 +83,23 @@ op <- v1 %o% v2 # alternative call as operation
 
 Alternatively, if we do start with vectors as single column matrices...
 ```{r}
-v1 <- matrix(c(2, 5, 4, 7))
-v2 <- matrix(c(4, 1, 0, 2))
+v1 <- matrix(c(2, 5, 4, 7), ncol=1)
+v2 <- matrix(c(4, 1, 0, 2), ncol=1)
 op <- outer(c(v1), c(v2))
 op <- c(v1) %o% c(v2) # alternative call as operation
 ```
 
 ### Code block 3.7/3.8 {-}
 ```{r}
-v1 <- matrix(c(2, 5, 4, 7))
-v2 <- matrix(c(4, 1, 0, 2))
+v1 <- matrix(c(2, 5, 4, 7), ncol=1)
+v2 <- matrix(c(4, 1, 0, 2), ncol=1)
 v3 <- v1 * v2
 ```
 
 ### Code block 3.9/3.10 {-}
 Please note that you need to explicitly specify the 2-norm via `type="2"`, as the _one norm_ is used by default.
 ```{r}
-v <- matrix(c(2, 5, 4, 7))
+v <- matrix(c(2, 5, 4, 7), ncol=1)
 vMag <- norm(v, type="2")
 v_unit <- v / vMag
 ```
@@ -122,7 +110,7 @@ v_unit <- v / vMag
 There is only one way to transpose a matrix in R: via function [t()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/t.html).
 
 ```{r}
-A <- matrix(runif(n=2*5), nrow=2)
+A <- matrix(runif(n=2*5), nrow=2, ncol=5)
 At1 <- t(A)
 ```
 
@@ -130,35 +118,35 @@ At1 <- t(A)
 ```{r}
 I <- diag(4)
 O <- rep(1, times=4)
-Z <- matrix(rep(0, 4 * 4), nrow = 4)
+Z <- matrix(rep(0, 4 * 4), nrow=4, ncol=4)
 ```
 
 ### Code block 5.5/5.6 {-}
 ```{r}
 D <- diag(c(1, 2, 3, 5))  # diagonal matrix
-R <- matrix(runif(n = 3 * 4), nrow=3)
+R <- matrix(runif(n = 3 * 4), nrow=3, ncol=4)
 d <- diag(R) # diagonal elements
 ```
 
 ### Code block 5.7/5.8 {-}
 In r [cbind()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html) and [rbind()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/cbind.html) concatenate, respectively, by column and row.
 ```{r}
-A <- matrix(runif(n = 3 * 5), nrow=3)
-B <- matrix(runif(n = 3 * 4), nrow=3)
+A <- matrix(runif(n = 3 * 5), nrow=3, ncol=5)
+B <- matrix(runif(n = 3 * 4), nrow=3, ncol=4)
 AB <- cbind(A, B)
 ```
 
 ### Code block 5.9/5.10 {-}
 There are two ways to compute lower and upper triangular parts of a matrix. First, to use `tril()` and `triu()` function from _pracma_ library.
 ```{r}
-A <- matrix(runif(n = 5 * 5), nrow=5)
-L <- tril(A)
-U <- triu(A)
+A <- matrix(runif(n = 5 * 5), nrow=5, ncol=5)
+L <- pracma::tril(A)
+U <- pracma::triu(A)
 ```
 
 Alternatively, you can use base R functions [lower.tri()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/lower.tri.html) and `upper.tri()` that give you a matrix of the same size with _logical_ values indicating whether an element belongs to, respectively, lower or upper triangle. Note that by default, the diagonal _is not_ included!
 ```{r}
-A <- matrix(runif(n = 5 * 5), nrow=5)
+A <- matrix(runif(n = 5 * 5), nrow=5, ncol=5)
 
 L <- A
 # by setting the UPPER triangular part to 0, we get the LOWER triangular part and the diagonal
@@ -176,25 +164,20 @@ t <- c(1, 2, 3, 4)
 T <- stats::toeplitz(t)
 H <- pracma::hankel(t, b= c(t[-1], t[1]))
 ```
+
 ### Code block 5.13/5.14 {-}
 ```{r}
 l <- 0.01
 I <- diag(4)
-A <- matrix(runif(4 * 4), nrow=4)
+A <- matrix(runif(4 * 4), nrow=4, ncol=4)
 As <- A + l * I
 ```
 
 ### Code block 5.15/5.16 {-}
-There is no trace function in R as you can easily implement it as a sum of diagonal elements:
+Base R does not implement trace function, as it is simply a `sum(diag(M))`. However, you can use `Trace()` from _pracma_ library.
 ```{r}
-A <- matrix(runif(4 * 4), nrow=4)
-tr <- sum(diag(A))
-```
-
-However, if you absolutely insist on having it as a function, use `tr()` from _psych_ library:
-```{r}
-A <- matrix(runif(4 * 4), nrow=4)
-tr <- psych::tr(A)
+A <- matrix(runif(4 * 4), nrow=4, ncol=4)
+tr <- pracma::Trace(A)
 ```
 
 
@@ -242,41 +225,50 @@ f <- sum(diag(t(A) %*% B))
 A <- matrix(runif(n=4*3), nrow=4, ncol=3)
 norm(A, type="F")
 ```
+
 ## Chapter 7
 
 ### Code block 7.1/7.2 {-}
-You can use either `rankMatrix()` function from the _Matrix_ library, which in addition to the rank itself, returns information on the method used to estimate the rank via attributes. Alternatively, you can use `Rank()` from the _pracma_ library./6.12 {-}
+you can use `Rank()` from the _pracma_ library. Alternatively, you can use `rankMatrix()` function from the _Matrix_ library, which in addition to the rank itself, returns information on the method used to estimate the rank via attributes. 
 ```{r}
 A <- matrix(runif(n=3*6), nrow=3, ncol=6)
-r1 <- Matrix::rankMatrix(A)
-r2 <- pracma::Rank(A)
+r1 <- pracma::Rank(A)
+r2 <- Matrix::rankMatrix(A)
 ```
 
 ### Code block 7.3/7.4 {-}
 ```{r}
 s <- runif(n=1)
 A <- matrix(runif(n=3*5), nrow=3, ncol=5)
-r1 <- Matrix::rankMatrix(A)
-r2 <- Matrix::rankMatrix(s * A)
+r1 <- pracma::Rank(A)
+r2 <- pracma::Rank(s * A)
 cat(r1, r2)
 ```
 
 ### Code block 7.5/7.6 {-}
-Source code for `rankMatrix()` function from _Matrix_ library.
-```{r}
-Matrix::rankMatrix
-```
-
 Source code for `Rank()` function from _pracma_ library.
 ```{r}
 pracma::Rank
 ```
 
-## Chapter 8
-### Code block 8.1/8.2 {-}
+Source code for `rankMatrix()` function from _Matrix_ library.
+```{r}
+Matrix::rankMatrix
+```
 
+## Chapter 8
+
+### Code block 8.1/8.2 {-}
 ```{r}
 A <- matrix(runif(n=3*4), nrow=3, ncol=4)
 pracma::nullspace(A)
+```
+
+## Chapter 9
+### Code block 9.1/9.2 {-}
+```{r}
+z <- complex(real=3, imaginary=4)
+Z <- complex(length.out=2, real=0, imaginary=0)
+Z[1] <- 3 + 4i
 ```
 

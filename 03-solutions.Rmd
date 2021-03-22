@@ -121,8 +121,8 @@ RHS - LHS # should always be positive
 
 ### Exercise 1 {-}
 ```{r}
-A <- matrix(runif(9 * 2), nrow=9, ncol=2)
-B <- matrix(runif(2 * 16), nrow=2, ncol=16)
+A <- matrix(runif(n=9*2), nrow=9, ncol=2)
+B <- matrix(runif(n=2*16), nrow=2, ncol=16)
 C <- A %*% B
 ```
 
@@ -131,7 +131,27 @@ C <- A %*% B
 Z <- matrix(0, nrow=5, ncol=5)
 N <- matrix(runif(5 * 5), nrow=5, ncol=5)
 ZN <-  Z + N * .Machine$double.eps * 1e-307
-cat(Matrix::rankMatrix(Z))
-cat(Matrix::rankMatrix(ZN))
-cat(norm(ZN, type = "F"))
+print(pracma::Rank(Z))
+print(pracma::Rank(ZN))
+print(norm(ZN, type = "F"))
 ```
+
+### Chapter 8
+### Exercise 1 {-}
+```{r}
+A <- matrix(runif(n=4*3), nrow=4, ncol=3) %*% matrix(runif(n=3*4), nrow=3, ncol=4)
+B <- matrix(runif(n=4*3), nrow=4, ncol=3) %*% matrix(runif(n=3*4), nrow=3, ncol=4)
+n <- pracma::nullspace(A)
+print(B %*% A %*% n) # zeros vector
+print(A %*% B %*% n) # not zeros vector
+```
+### Exercise 2 {-}
+```{r}
+A <- matrix(runif(n=16*9), nrow=16, ncol=9) %*% matrix(runif(n=9*11), nrow=9, ncol=11)
+rn <- pracma::nullspace(A)
+ln <- pracma::nullspace(t(A))
+r <- pracma::Rank(A)
+print(ncol(rn) + r)
+print(ncol(ln) + r)
+```
+
