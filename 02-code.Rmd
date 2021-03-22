@@ -271,3 +271,19 @@ Z <- complex(length.out=2, real=0, imaginary=0)
 Z[1] <- 3 + 4i
 ```
 
+### Code block 9.3/9.4 {-}
+Base R does not have a function that generates random integers on the interval. I will use `sample()` with replacement from the range of integers to replicate this. Also note that I have renamed `i` to `im` to minimize the confusion. 
+```{r}
+r <- sample(-3:4, size=3, replace = TRUE)
+im <- sample(-3:4, size=3, replace = TRUE)
+Z <- r + im * 1i
+print(Z)
+print(Conj(Z))
+```
+
+### Code block 9.5/9.6 {-}
+`pracma::dot()` implements the Hermitian dot product.
+```{r}
+v <- c(0, 1i)
+pracma::dot(v, v)
+```
