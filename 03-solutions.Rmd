@@ -145,6 +145,7 @@ n <- pracma::nullspace(A)
 print(B %*% A %*% n) # zeros vector
 print(A %*% B %*% n) # not zeros vector
 ```
+
 ### Exercise 2 {-}
 ```{r}
 A <- matrix(runif(n=16*9), nrow=16, ncol=9) %*% matrix(runif(n=9*11), nrow=9, ncol=11)
@@ -153,5 +154,26 @@ ln <- pracma::nullspace(t(A))
 r <- pracma::Rank(A)
 print(ncol(rn) + r)
 print(ncol(ln) + r)
+```
+
+## Chapter 9 {-}
+### Exercise 1 {-}
+Base R does not implement Hermitian transpose directly and you are advised to compute it via `Conj(t(A))`, see _Notes_ for [t()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/t.html function.
+```{r}
+U <- 0.5 * matrix(c(1+1i, 1-1i, 1-1i, 1+1i), nrow=2, ncol=2)
+print(U %*% Conj(t(U))) # Hermitian
+print(U %*% t(U)) # not Hermitian
+```
+### Exercise 2 {-}
+In contrast to Matlab, a complex matrix
+[isSymmetric()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/isSymmetric.html) only if it is Hermitian.
+```{r}
+r <- matrix(runif(n=3*3), nrow=3, ncol=3)
+im <- matrix(runif(n=3*3), nrow=3, ncol=3)
+A <- r + im * 1i
+A1 <- A + Conj(t(A))
+A2 <- A %*% Conj(t(A))
+isSymmetric(A1)
+isSymmetric(A2)
 ```
 
