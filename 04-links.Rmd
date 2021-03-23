@@ -9,6 +9,7 @@
 
 ## D {-}
 
+* Determinant: [det()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/det.html)
 * Diagonal: [diag()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html)
 * Dot product: [pracma::dot()](https://rdrr.io/rforge/pracma/man/dot.html)
 
@@ -25,6 +26,7 @@
 
 * Matrix, concatenating by columns [cbind()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html) or rows [rbind()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)
 * Matrix, creating: [matrix()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/matrix.html)
+* Matrix, determinant: [det()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/det.html)
 * Matrix diagonal: [diag()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html)
 * Matrix dimensions: [dim()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/dim.html)
 * Matrix is symmetric (real valued) or Hermitian (complex values): [isSymmetric()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/isSymmetric.html)

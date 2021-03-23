@@ -305,3 +305,9 @@ A <- matrix(runif(n=2*4), nrow=2, ncol=4)
 pracma::rref(A)
 ```
 
+## Chapter 11 {-}
+### Code block 11.1/11.2 {-}
+```{r}
+A <- matrix(runif(n=3*3), nrow=3, ncol=3)
+det(A)
+```
