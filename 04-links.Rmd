@@ -4,7 +4,7 @@
 
 * Complex numbers in R: [complex()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/complex.html)
 * Complex conjugate: [Conj()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/complex.html)
-* Concatenating matrices by columns [cbind(https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)] or rows [rbind(https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)]
+* Concatenating matrices by columns [cbind()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html) or rows [rbind()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)
 * Cross product: [crossprod()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/crossprod.html)
 
 ## D {-}
@@ -23,7 +23,7 @@
 
 ## M {-}
 
-* Matrix, concatenating by columns [cbind(https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)] or rows [rbind(https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)]
+* Matrix, concatenating by columns [cbind()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html) or rows [rbind()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)
 * Matrix, creating: [matrix()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/matrix.html)
 * Matrix diagonal: [diag()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html)
 * Matrix multiplication: [%*%](https://stat.ethz.ch/R-manual/R-patched/library/base/html/matmult.html)
