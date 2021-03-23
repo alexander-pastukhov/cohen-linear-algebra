@@ -22,24 +22,26 @@ ggplot(data=NULL, aes(x = c(0, v[1]), y=c(0, v[2])))  +
 ```
 
 ### Code block 2.5/2.6 {-}
-In R _atomic_ vectors are created via `c()` function but, technically, they are neither column, nor row vectors. [Matrix multiplication manual](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matmult.html) states that it: "_Multiplies two matrices, if they are conformable. If one argument is a vector, it will be promoted to either a row or column matrix to make the two arguments conformable. If both are vectors of the same length, it will return the inner product (as a matrix)._" At the same time, _transposing_ an atomic vector `t(c(...))` transforms it into a single row matrix, thus a row vector, hinting that deep down an outcome of `c()` is a column vector.
+In R _atomic_ vectors are created via `c()` function but, technically, they are neither column, nor row vectors. [Matrix multiplication manual](https://stat.ethz.ch/R-manual/R-devel/library/base/html/matmult.html) states that it "_multiplies two matrices, if they are conformable. If one argument is a vector, it will be promoted to either a row or column matrix to make the two arguments conformable. If both are vectors of the same length, it will return the inner product (as a matrix)._" At the same time, _transposing_ an atomic vector `t(c(...))` transforms it into a single row matrix, thus a row vector, hinting that deep down an outcome of `c()` is a column vector.
 
 To avoid ambiguity, I will use single row and single column matrices for, respectively, row and column vectors.
 
 ```{r}
 v1 <- matrix(c(2, 5, 5, 7), nrow = 1) # row vector
 v2 <- matrix(c(2, 5, 5, 7), ncol = 1) # column vector
+v3 <- matrix(c(2, 5, 5, 7))           # also a column vector
 ```
 
 ### Code block 2.7/2.8 {-}
 ```{r}
 v1 <- matrix(c(2, 5, 5, 7), nrow = 1) # row vector
+v1a <- t(c(2, 5, 5, 7))               # also a row vector
 v2 <- t(v1)                           # column vector
 ```
  
 
 ### Code block 2.9/2.10 {-}
-For this example, you can also use atomic vectors directly without turning them into a single column matrix.
+For this example, you can also use atomic vectors directly without turning them into a column vector / single column matrix.
 ```{r}
 v1 <- matrix(c(2, 5, 4, 7), ncol=1)
 v2 <- matrix(c(4, 1, 0, 2), ncol=1)
@@ -290,11 +292,11 @@ pracma::dot(v, v)
 
 ## Chapter 10 {-}
 ### Code block 10.1/10.2 {-}
-R implementation of [LU matrix decomposition](https://stat.ethz.ch/R-manual/R-patched/library/Matrix/html/LU-class.html) works only on _square_, positive definite matrices.
+You can use `pracma::lu()` function but note that it works only on _square_, positive definite matrices.
 ```{r}
 # Using the square matrix from practice problem b
 A <- matrix(c(2, 0, 1, 1, 1, 2, 3, 1, 3), nrow=3, byrow=TRUE)
-lu(A)
+pracma::lu(A)
 ```
 
 ### Code block 10.3/10.4 {-}
