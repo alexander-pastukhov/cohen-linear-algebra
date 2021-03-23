@@ -1,0 +1,71 @@
+# Index {-}
+
+## C {-}
+
+* Complex numbers in R: [complex()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/complex.html)
+* Complex conjugate: [Cong()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/complex.html)
+* Concatenating matrices by columns [cbind(https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)] or rows [rbind(https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)]
+* Cross product: [crossprod()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/crossprod.html)
+
+## D {-}
+
+* Diagonal: [diag()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html)
+* Dot product: [pracma::dot()](https://rdrr.io/rforge/pracma/man/dot.html)
+
+## H {-}
+
+* Hankel matrix: [pracma::hankel()](https://rdrr.io/rforge/pracma/man/hankel.html)
+
+## L {-}
+
+* Lower triangular part of a matrix: [pracma::tril()](https://rdrr.io/rforge/pracma/man/tri.html) and [lower.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html) for logical indexes (excluding diagonal by default).
+* LU decomposition: [pracma::lu()](https://rdrr.io/cran/pracma/man/lu.html)
+
+## M {-}
+
+* Matrix, concatenating by columns [cbind(https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)] or rows [rbind(https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html)]
+* Matrix, creating: [matrix()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/matrix.html)
+* Matrix diagonal: [diag()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html)
+* Matrix multiplication: [%*%](https://stat.ethz.ch/R-manual/R-patched/library/base/html/matmult.html)
+* Matrix norm: [norm()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/norm.html)
+* Matrix rank: [pracma::Rank()](https://rdrr.io/rforge/pracma/man/rank.html)
+* Matrix trace: [pracma::Trace()](https://rdrr.io/rforge/pracma/man/trace.html)
+* Matrix, triangular parts. Lower [pracma::tril()](https://rdrr.io/rforge/pracma/man/tri.html) and upper [pracma::triu()](https://rdrr.io/rforge/pracma/man/tri.html). Logical indexes (excluding diagonal by default): [lower.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html) and [upper.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html).
+
+## N {-}
+
+* Norm of matrix: [norm()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/norm.html)
+* Null space: [pracma::nullspace()](https://rdrr.io/rforge/pracma/man/nullspace.html)
+
+## O {-}
+
+* Outer product: [outer()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/outer.html)
+
+## R {-}
+
+* Random numbers from a normal distribution: [rnorm()](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/Normal.html)
+* Random numbers from a uniform distribution: [runif()](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/Uniform.html)
+* Rank: [pracma::Rank()](https://rdrr.io/rforge/pracma/man/rank.html)
+* Reduced Row Echelon Form: [pracma::rref()](https://rdrr.io/rforge/pracma/src/R/rref.R)
+
+## S {-}
+
+* Sampling from list of numbers (used in the code to sample integers from a range): [sample()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/sample.html)
+
+## T {-}
+
+* Toeplitz matrix: [toeplitz()](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/toeplitz.html)
+* Trace: [pracma::Trace()](https://rdrr.io/rforge/pracma/man/trace.html)
+* Transpose: [t()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/t.html)
+* Triangular parts of matrix. Lower [pracma::tril()](https://rdrr.io/rforge/pracma/man/tri.html) and upper [pracma::triu()](https://rdrr.io/rforge/pracma/man/tri.html). Logical indexes (excluding diagonal by default): [lower.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html) and [upper.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html).
+
+## U {-}
+
+* [Uniform distribution](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/Uniform.html)
+* Upper triangular part of a matrix: [pracma::triu()](https://rdrr.io/rforge/pracma/man/tri.html) and [upper.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html) for logical indexes (excluding diagonal by default).
+
+## V {-}
+
+* Vector, creating or converting to an atomic vector: [c()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/c.html)
+* Vector, converting to an atomic vector: [as.vector()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/vector.html)
+
