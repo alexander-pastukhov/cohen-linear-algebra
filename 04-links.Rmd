@@ -61,7 +61,6 @@
 
 ## U {-}
 
-* [Uniform distribution](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/Uniform.html)
 * Upper triangular part of a matrix: [pracma::triu()](https://rdrr.io/rforge/pracma/man/tri.html) and [upper.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html) for logical indexes (excluding diagonal by default).
 
 ## V {-}
