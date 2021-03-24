@@ -311,3 +311,4 @@ pracma::rref(A)
 A <- matrix(runif(n=3*3), nrow=3, ncol=3)
 det(A)
 ```
+

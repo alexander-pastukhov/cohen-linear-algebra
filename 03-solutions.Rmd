@@ -191,3 +191,40 @@ A <- matrix(runif(n=3*6), nrow=3, ncol=6)
 pracma::rref(A)
 ```
 
+## Chapter 11 {-}
+### Exercise 1 {-}
+```{r}
+A <- matrix(sample(0:10, size=4*4, replace=TRUE), nrow=4, ncol=4)
+b <- sample(-10:-1, size=1)
+print(det(b * A))
+print(b^nrow(A) * det(A))
+```
+
+### Exercise 2 {-}
+Note that figure 11.5 in the book (at least in my electronic edition) has only _negative_ values for log determinant, meaning that all average determinants were less than  1. Neither code below, not the original solution code replicates that. I have a feeling that figure 11.5 plots $log(mean(dets)) - 40$ but I have no idea why.
+```{r}
+library(ggplot2)
+
+ns <- 3:30
+iters <- 100
+dets <- matrix(0, nrow=length(ns), ncol = iters)
+
+for(ni in 1:length(ns)){
+  for(it in 1:iters){
+    A <- matrix(rnorm(n=ns[ni]^2), nrow=ns[ni], ncol=ns[ni]) # step 1
+    A[, 0] <- A[, 1]  # step 2  
+    dets[ni, it] <- abs(det(A)) # step 3
+  }
+}
+
+dets_summary <- 
+  data.frame(MatrixSize = ns,
+             LogDeterminant = log(apply(dets, MARGIN = 1, mean)))
+
+ggplot(data=dets_summary, aes(x=MatrixSize, y=LogDeterminant)) + 
+  geom_line() + 
+  geom_point() + 
+  xlab("Matrix size") + 
+  ylab("Log determinant")
+```
+
