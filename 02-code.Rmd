@@ -312,3 +312,36 @@ A <- matrix(runif(n=3*3), nrow=3, ncol=3)
 det(A)
 ```
 
+## Chapter 12 {-}
+### Code block 12.1/12.2 {-}
+In R, you find the inverse via [solve()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/solve.html). The latter solves an equation $Ax = b$, omitting the second argument defaults `b = I` and the equation is solved to find the inverse. I have added [round()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Round.html) to make it easier to see that $A A^-1$ produces an identity matrix.
+```{r cb12-1/2}
+A <- matrix(rnorm(n=3*3), nrow=3, ncol=3)
+Ai <- solve(A)
+round(A %*% Ai, 4)
+```
+
+### Code block 12.3/12.4 {-}
+```{r cb12-3/4}
+A <- matrix(rnorm(n=3*3), nrow=3, ncol=3)
+Acat <- cbind(A, diag(1, nrow=3, ncol=3))
+Ar <- pracma::rref(Acat) # RREF
+Ar <- Ar[, 4:6] # keep inverse
+Ai <- solve(A)
+round(Ar - Ai, 4)
+```
+
+### Code block 12.5/12.6 {-}
+```{r cb12-5/6}
+A <- matrix(rnorm(n=5*3), nrow=5, ncol=3)
+Al <- solve(t(A) %*% A) %*% t(A)
+round(Al %*% A, 4)
+```
+### Code block 12.7/12.8 {-}
+```{r cb12-7/8}
+A <- matrix(rnorm(n=3*3), nrow=3, ncol=3)
+A[2, ] <- A[1, ]
+Api <- pracma::pinv(A)
+Api %*% A
+```
+

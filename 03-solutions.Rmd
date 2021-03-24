@@ -193,7 +193,7 @@ pracma::rref(A)
 
 ## Chapter 11 {-}
 ### Exercise 1 {-}
-```{r}
+```{r e11-1}
 A <- matrix(sample(0:10, size=4*4, replace=TRUE), nrow=4, ncol=4)
 b <- sample(-10:-1, size=1)
 print(det(b * A))
@@ -201,8 +201,7 @@ print(b^nrow(A) * det(A))
 ```
 
 ### Exercise 2 {-}
-Note that figure 11.5 in the book (at least in my electronic edition) has only _negative_ values for log determinant, meaning that all average determinants were less than  1. Neither code below, not the original solution code replicates that. I have a feeling that figure 11.5 plots $log(mean(dets)) - 40$ but I have no idea why.
-```{r}
+```{r e11-2}
 library(ggplot2)
 
 ns <- 3:30
@@ -212,7 +211,7 @@ dets <- matrix(0, nrow=length(ns), ncol = iters)
 for(ni in 1:length(ns)){
   for(it in 1:iters){
     A <- matrix(rnorm(n=ns[ni]^2), nrow=ns[ni], ncol=ns[ni]) # step 1
-    A[, 0] <- A[, 1]  # step 2  
+    A[, 1] <- A[, 2]  # step 2  
     dets[ni, it] <- abs(det(A)) # step 3
   }
 }
@@ -226,5 +225,60 @@ ggplot(data=dets_summary, aes(x=MatrixSize, y=LogDeterminant)) +
   geom_point() + 
   xlab("Matrix size") + 
   ylab("Log determinant")
+```
+
+## Chapter 12 {-}
+
+### Exercise 1 {-}
+```{r e12-1}
+# create matrix
+m <- 4
+A <- matrix(rnorm(m^2), nrow=m, ncol=m)
+M <- matrix(0, nrow=m, ncol=m)
+G <- matrix(0, nrow=m, ncol=m)
+
+# compute minors matrix
+for(i in 1:m){
+  for(j in 1:m){
+    
+    ## select rows and cols
+    # implementation matching the original
+    rows <- rep(TRUE, m)
+    rows[i] <- FALSE
+    cols <- rep(TRUE, m)
+    cols[j] <- FALSE
+    M[i, j] <- det(A[rows, cols])
+    
+    # a simpler R-version using negative (excluding) indexing
+    M[i, j] <- det(A[-i, -j])
+    
+    # compute G
+    G[i, j] <- (-1)^(i + j)
+  }
+}
+
+# compute C
+C <- M * G
+
+# compute A
+Ainv <- t(C) / det(A)
+AinvI <- solve(A)
+round(AinvI - Ainv, 4)
+```
+
+### Exercise 1 {-}
+I renamed `T` into `TM`, as `T` is a logical `TRUE` in R.
+```{r e12-3}
+# square matrix
+A <- matrix(rnorm(5^2), nrow=5, ncol=5)
+Ai <- solve(A)
+Api <- pracma::pinv(A)
+print(round(Ai - Api))
+
+# tall matrix
+TM <- matrix(rnorm(5*3), nrow=5, ncol=3)
+TMl <- solve(t(TM) %*% TM) %*% t(TM)
+TMpi <- pracma::pinv(TM)
+print(round(TMl - TMpi))
 ```
 

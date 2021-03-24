@@ -17,6 +17,10 @@
 
 * Hankel matrix: [pracma::hankel()](https://rdrr.io/rforge/pracma/man/hankel.html)
 
+## I {-}
+
+* Inverse of a matrix: [solve()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/solve.html)
+
 ## L {-}
 
 * Lower triangular part of a matrix: [pracma::tril()](https://rdrr.io/rforge/pracma/man/tri.html) and [lower.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html) for logical indexes (excluding diagonal by default).
@@ -29,9 +33,11 @@
 * Matrix, determinant: [det()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/det.html)
 * Matrix diagonal: [diag()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html)
 * Matrix dimensions: [dim()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/dim.html)
+* Matrix inverse: [solve()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/solve.html)
 * Matrix is symmetric (real valued) or Hermitian (complex values): [isSymmetric()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/isSymmetric.html)
 * Matrix multiplication: [%*%](https://stat.ethz.ch/R-manual/R-patched/library/base/html/matmult.html)
 * Matrix norm: [norm()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/norm.html)
+* Matrix pseudoinverse: [pracma::pinv()](https://rdrr.io/cran/pracma/man/pinv.html)
 * Matrix rank: [pracma::Rank()](https://rdrr.io/rforge/pracma/man/rank.html)
 * Matrix trace: [pracma::Trace()](https://rdrr.io/rforge/pracma/man/trace.html)
 * Matrix, triangular parts. Lower [pracma::tril()](https://rdrr.io/rforge/pracma/man/tri.html) and upper [pracma::triu()](https://rdrr.io/rforge/pracma/man/tri.html). Logical indexes (excluding diagonal by default): [lower.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html) and [upper.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html).
@@ -44,6 +50,11 @@
 ## O {-}
 
 * Outer product: [outer()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/outer.html)
+
+## P {-}
+
+* Pseudoinverse: [pracma::pinv()](https://rdrr.io/cran/pracma/man/pinv.html)
+
 
 ## R {-}
 
