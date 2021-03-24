@@ -318,8 +318,8 @@ Q2 <- qr.Q(QR)
 
 ### Exercise 3 {-}
 ```{r e14-3}
-# load the data
-df <- read.csv("widget_data.txt", header=FALSE)
+# load the data into a table that we convert to a matrix
+df <- read.csv("http://sincxpress.com/widget_data.txt", header=FALSE)
 data <- as.matrix(df)
 
 # design matrix
@@ -402,7 +402,7 @@ v <- 1:50
 lstrow <- c(v[length(v)], v[-length(v)])
 H <- pracma::hankel(v, lstrow)
 eigH <- eigen(H)
-V <- t(eigH$vectors)[, order(eigH$values, decreasing=TRUE)]
+V <- eigH$vectors[, order(eigH$values, decreasing=TRUE)]
 
 
 # the matrix
@@ -418,14 +418,14 @@ plotH <-
 # eigenvector matrix
 dfV <- melt(V)
 plotV <- 
-  ggplot(data=dfV, aes(x=Var1, y=Var2)) + 
+  ggplot(data=dfV, aes(x=Var2, y=Var1)) + 
   geom_raster(aes(fill=value), show.legend=FALSE) + 
   labs(title="Eigenvector matrix") + 
   coord_equal() + xlab("") + ylab("")
 
 # a few evecs
 dfV <- 
-  data.frame(V) %>%
+  data.frame(t(V)) %>%
   dplyr::slice_head(n=4) %>%
   dplyr::mutate(VectorIndex = 1:n()) %>%
   tidyr::pivot_longer(cols = c(X1:X50), names_to="Element", values_to="Value") %>%
@@ -444,3 +444,127 @@ plot4 <-
 (plotH | plotV) / plot4
 ```
 
+
+## Chapter 16 {-}
+
+### Exercise 1 {-}
+In R [svd()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/svd.html) defaults to "economy" mode. If you want the full matrix, you must specify dimensions for **U** and **V** explicitly.
+```{r e16-1}
+m <- 6
+n <- 3
+A <- matrix(rnorm(n=m*n), nrow=m, ncol=n)
+
+fullSVD <- svd(A, nu=m, nv=n)
+economySVD <- svd(A)
+
+cat(sprintf("Full SVD: (%d, %d), %d, (%d, %d)\n", nrow(fullSVD$u), ncol(fullSVD$u), length(fullSVD$d), nrow(fullSVD$v), ncol(fullSVD$v)))
+cat(sprintf("Economy : (%d, %d), %d, (%d, %d)\n", nrow(economySVD$u), ncol(economySVD$u), length(economySVD$d), nrow(economySVD$v), ncol(economySVD$v)))
+```
+### Exercise 2 {-}
+Note that [eigen()]() sorts eigenvalues and eigenvectors, so sorting is redundant and can be skipped (but I kept it to match the original code).
+```{r e16-2}
+A <- matrix(rnorm(n=4*5), nrow=4, ncol=5) # matrix
+A <- matrix(a, nrow=4, ncol=5, byrow=TRUE)
+eigAV <- eigen(t(A) %*% A) 
+V <-  eigAV$vectors[, order(eigAV$values, decreasing=TRUE)] # sort descent V
+eigAU <- eigen(A %*% t(A)) 
+U <-  eigAU$vectors[, order(eigAU$values, decreasing=TRUE)] # sort descent U
+
+# create Sigma
+sorted_values <- sort(eigAU$values, decreasing=TRUE)
+S <- matrix(0, nrow=nrow(A), ncol=ncol(A))
+for(i in 1:length(sorted_values)){
+  S[i, i] <- sqrt(sorted_values[i])
+}
+
+svdA <- svd(A) # svd
+```
+
+### Exercise 3 {-}
+```{r e16-3}
+library(ggplot2)
+library(patchwork)
+library(RColorBrewer)
+library(reshape2)
+
+
+A <- matrix(rnorm(n=5*3), nrow=5, ncol=3)
+svdA <- svd(A)
+S <- diag(svdA$d) # need Sigma matrix
+
+fill_palette <- colorRampPalette(rev(brewer.pal(11, "Spectral")))
+sc <- scale_colour_gradientn(colours = fill_palette(100), limits=c(min(A), max(A)))
+
+
+one_layer_plots <- list()
+lowrank_plots <- list()
+for(i in 1:3) {
+  onelayer <- outer(svdA$u[, i], svdA$v[i, ]) * svdA$d[i]
+  one_layer_plots[[i]] <- 
+    ggplot(data=reshape2::melt(t(onelayer)), aes(x=Var1, y=Var2, fill=value)) + 
+    geom_tile(show.legend=FALSE) + theme_void() +
+    labs(title=sprintf("Layer %d", i)) +
+    coord_equal() + sc
+  
+  lowrank <- matrix(svdA$u[, 1:i], ncol=i) %*% S[1:i,1:i] %*% matrix(svdA$v[1:i,], nrow=i)
+  lowrank_plots[[i]] <- 
+    ggplot(data=reshape2::melt(t(lowrank)), aes(x=Var1, y=Var2, fill=value)) + 
+    geom_tile(show.legend=FALSE) + theme_void() +
+    labs(title=sprintf("Layers 1:%d", i)) +
+    coord_equal() + sc
+}
+
+plotA <- 
+  ggplot(data=reshape2::melt(t(A)), aes(x=Var1, y=Var2, fill=value)) + 
+  geom_tile(show.legend=FALSE) + theme_void() +
+  labs(title="Orig. A") +
+  coord_equal() + sc
+
+layout <- "
+ABC#
+DEFG
+"
+one_layer_plots[[1]] + one_layer_plots[[2]] + one_layer_plots[[3]] +
+  lowrank_plots[[1]] + lowrank_plots[[2]] + lowrank_plots[[3]] + plotA +
+  plot_layout(design = layout)
+```
+
+### Exercise 4 {-}
+```{r e16-4}
+m <- 6
+n <- 16
+condnum <- 42
+
+# create U and V from random numbers
+U <- qr(matrix(rnorm(m*m), nrow=m, ncol=m))
+V <- qr(matrix(rnorm(n*n), nrow=n, ncol=n))
+
+# create singular values vector
+s <- seq(condnum, 1, length.out = min(c(m,n)))
+S <- diag(s, nrow=m, ncol=n)
+# ↓ original code ↓
+# S <- matrix(0, nrow=m, ncol=n)
+# for(i in 1:min(c(m, n))){
+#   S[i, i] <- s[i]
+# }
+
+A <- qr.Q(U) %*% S %*% t(qr.Q(V)) # construct matrix
+pracma::cond(A)
+```
+
+### Exercise 5 {-}
+```{r e16-5}
+library(imager)
+
+rankN <- 20
+
+picture <- imager::load.image('https://upload.wikimedia.org/wikipedia/en/8/86/Einstein_tongue.jpg')
+
+pic <- as.matrix(picture)
+picSVD <- svd(pic, nu=nrow(pic), nv=ncol(pic))
+S <- diag(picSVD$d, nrow=nrow(pic), ncol=ncol(pic))
+
+lowrank <- picSVD$u[, 1:rankN] %*% S[1:rankN, 1:rankN] %*% t(picSVD$v)[1:rankN,]
+
+plot(imager::as.cimg(lowrank), axes=FALSE)
+```
