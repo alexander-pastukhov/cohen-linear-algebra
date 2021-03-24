@@ -345,3 +345,21 @@ Api <- pracma::pinv(A)
 Api %*% A
 ```
 
+## Chapter 13 {-}
+### Code block 13.1/13.2 {-}
+```{r cb13-1/2}
+A <- matrix(c(1, 2, 3, 1, 1, 1), nrow=3, byrow=TRUE)
+b <- matrix(c(5.5, -3.5, 1.5), nrow=3)
+lsfit(A, b)$coefficients
+```
+
+### Code block 13.3/13.4 {-}
+In R, you first perform QT decomposition via [qr()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/qr.html) and get an object. Then, you can extract component matrices of the decomposition via [qr.Q()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/qraux.html) and [qr.R()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/qraux.html).
+```{r cb13-3/4}
+A <- matrix(rnorm(n=4*3), nrow=4, ncol=3)
+QR <- qr(A)
+Q <- qr.Q(QR)
+R <- qr.R(QR)
+```
+
+

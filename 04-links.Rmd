@@ -23,6 +23,7 @@
 
 ## L {-}
 
+* Least-squares solution to a linear matrix equation: [lsfit()](https://stat.ethz.ch/R-manual/R-patched/library/stats/html/lsfit.html)
 * Lower triangular part of a matrix: [pracma::tril()](https://rdrr.io/rforge/pracma/man/tri.html) and [lower.tri()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html) for logical indexes (excluding diagonal by default).
 * LU decomposition: [pracma::lu()](https://rdrr.io/cran/pracma/man/lu.html)
 
@@ -55,6 +56,9 @@
 
 * Pseudoinverse: [pracma::pinv()](https://rdrr.io/cran/pracma/man/pinv.html)
 
+## Q {-}
+
+** QR decomposition: [qr()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/qr.html). To reconstruct Q, R, or X matrices see [qr auxiliaries](https://stat.ethz.ch/R-manual/R-devel/library/base/html/qraux.html).
 
 ## R {-}
 
