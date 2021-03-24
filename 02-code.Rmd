@@ -362,4 +362,21 @@ Q <- qr.Q(QR)
 R <- qr.R(QR)
 ```
 
+## Chapter 15 {-}
+### Code block 15.1/15.2 {-}
+```{r cb15-1/2}
+A <- matrix(c(2, 3, 3, 2), nrow=2, ncol=2, byrow=TRUE)
+eigenA <- eigen(A)
+V <- eigenA$vectors
+L <- eigenA$values
+```
 
+### Code block 15.3/15.4 {-}
+```{r cb15-3/4}
+n <- 3
+A <- matrix(rnorm(n=n^2), nrow=n, ncol=n)
+B <- matrix(rnorm(n=n^2), nrow=n, ncol=n)
+eigenAB <- geigen::geigen(A, B)
+evecs <- eigenAB$vectors
+evals <- eigenAB$vals
+```

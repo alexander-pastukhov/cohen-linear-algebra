@@ -358,3 +358,89 @@ ggplot(df_long, aes(x = Variable, y=`Widgets purchased`)) +
 yHat <- X %*% beta
 r2 <- 1 - sum((yHat - y)^2) / sum((y - mean(y))^2)
 ```
+
+## Chapter 15 {-}
+
+### Exercise 1 {-}
+```{r e15-1}
+avediffs <- rep(0, times=100)
+for(n in 1:100){
+  A <- matrix(rnorm(n=n^2), nrow=n, ncol=n)
+  B <- matrix(rnorm(n=n^2), nrow=n, ncol=n)
+  l1 <- geigen::geigen(A, B, symmetric=FALSE, only.values=TRUE)$values
+  l2 <- eigen(solve(B) %*% A)$values
+  
+  # important to sort eigvals
+  l1 <- sort(l1)
+  l2 <- sort(l2)
+  
+  avediffs[n] <- mean(abs(l1-l2))
+}
+
+ggplot(data=NULL, aes(x=1:100, y=avediffs)) + 
+  geom_point() + 
+  xlab("Matrix size") + 
+  ylab(expression(paste(Delta, lambda)))
+```
+
+### Exercise 2 {-}
+```{r e15-2}
+A <- diag(1:6)
+eigenA <- eigen(A)
+L <- eigenA$values
+V <- eigenA$vectors
+```
+
+### Exercise 3 {-}
+```{r e15-3}
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+library(reshape2)
+
+v <- 1:50
+lstrow <- c(v[length(v)], v[-length(v)])
+H <- pracma::hankel(v, lstrow)
+eigH <- eigen(H)
+V <- t(eigH$vectors)[, order(eigH$values, decreasing=TRUE)]
+
+
+# the matrix
+dfH <- melt(H)
+
+plotH <- 
+  ggplot(data=dfH, aes(x=1-Var1, y=Var2)) + 
+  geom_raster(aes(fill=value), show.legend=FALSE) + 
+  labs(title="Hankel matrix") + 
+  coord_equal() + xlab("") + ylab("")
+  
+
+# eigenvector matrix
+dfV <- melt(V)
+plotV <- 
+  ggplot(data=dfV, aes(x=Var1, y=Var2)) + 
+  geom_raster(aes(fill=value), show.legend=FALSE) + 
+  labs(title="Eigenvector matrix") + 
+  coord_equal() + xlab("") + ylab("")
+
+# a few evecs
+dfV <- 
+  data.frame(V) %>%
+  dplyr::slice_head(n=4) %>%
+  dplyr::mutate(VectorIndex = 1:n()) %>%
+  tidyr::pivot_longer(cols = c(X1:X50), names_to="Element", values_to="Value") %>%
+  dplyr::group_by(VectorIndex) %>%
+  dplyr::mutate(ElementIndex = 1:n()) %>%
+  dplyr::select(-Element)
+
+plot4 <- 
+  ggplot(data=dfV, aes(x = ElementIndex, y=Value, color=as.factor(VectorIndex))) + 
+  geom_line(show.legend=FALSE) + 
+  geom_point(show.legend=FALSE) + 
+  xlab("Eigenvector element index") + 
+  ylab("Eigenvector element value") + 
+  labs(title = "First four eigenvectors")
+
+(plotH | plotV) / plot4
+```
+

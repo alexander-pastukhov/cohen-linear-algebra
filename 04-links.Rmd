@@ -13,6 +13,14 @@
 * Diagonal: [diag()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html)
 * Dot product: [pracma::dot()](https://rdrr.io/rforge/pracma/man/dot.html)
 
+## E {-}
+
+* Eigenvalues and eigenvectors: [eigen](https://stat.ethz.ch/R-manual/R-devel/library/base/html/eigen.html)
+
+## G {-}
+
+* Generalized Eigenvalues: [giegen::geigen()](https://rdrr.io/cran/geigen/man/geigen.html)
+
 ## H {-}
 
 * Hankel matrix: [pracma::hankel()](https://rdrr.io/rforge/pracma/man/hankel.html)
@@ -34,6 +42,7 @@
 * Matrix, determinant: [det()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/det.html)
 * Matrix diagonal: [diag()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html)
 * Matrix dimensions: [dim()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/dim.html)
+* Matrix eigenvalues and eigenvectors: [eigen](https://stat.ethz.ch/R-manual/R-devel/library/base/html/eigen.html)
 * Matrix inverse: [solve()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/solve.html)
 * Matrix is symmetric (real valued) or Hermitian (complex values): [isSymmetric()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/isSymmetric.html)
 * Matrix multiplication: [%*%](https://stat.ethz.ch/R-manual/R-patched/library/base/html/matmult.html)
