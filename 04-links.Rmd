@@ -49,6 +49,7 @@
 * Matrix is symmetric (real valued) or Hermitian (complex values): [isSymmetric()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/isSymmetric.html)
 * Matrix multiplication: [%*%](https://stat.ethz.ch/R-manual/R-patched/library/base/html/matmult.html)
 * Matrix norm: [norm()](https://stat.ethz.ch/R-manual/R-patched/library/base/html/norm.html)
+* Matrix to the power: [matrixcalc::matrix.power()](https://www.rdocumentation.org/packages/matrixcalc/versions/1.0-3/topics/matrix.power)
 * Matrix pseudoinverse: [pracma::pinv()](https://rdrr.io/cran/pracma/man/pinv.html)
 * Matrix rank: [pracma::Rank()](https://rdrr.io/rforge/pracma/man/rank.html)
 * Matrix trace: [pracma::Trace()](https://rdrr.io/rforge/pracma/man/trace.html)
@@ -65,6 +66,7 @@
 
 ## P {-}
 
+* Power function for matrix: [matrixcalc::matrix.power()](https://www.rdocumentation.org/packages/matrixcalc/versions/1.0-3/topics/matrix.power)
 * Pseudoinverse: [pracma::pinv()](https://rdrr.io/cran/pracma/man/pinv.html)
 
 ## Q {-}

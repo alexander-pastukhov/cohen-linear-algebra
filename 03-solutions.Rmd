@@ -591,3 +591,39 @@ plot(picture, axes=FALSE, main="Original")
 plot(as.cimg(lowrank), axes=FALSE, main=sprintf("%s comps with > %g%%", sum(comps), thresh))
 ```
 
+### Exercise 7 {-}
+Note `matrix(picSVD$u[, 1:si], ncol=si)`. Without `matrix(, ncol=si)`, `picSVD$u[, 1:si]` becomes an atomic vector and matrix multiplication breaks down.
+```{r e16-7, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+RMS <- rep(0, length(s))
+for(si in 1:length(s)){
+  lowrank <- matrix(picSVD$u[, 1:si], ncol=si) %*% S[1:si, 1:si] %*% t(picSVD$v)[1:si,]
+  diffimg <- lowrank - pic
+  RMS[si] <- sqrt(mean(diffimg^2))
+}
+
+ggplot(data=NULL, aes(x=1:length(RMS), y=RMS)) + 
+  geom_line() + 
+  xlab("Rank approximation") + 
+  ylab("Error (a.u.)")
+```
+
+### Exercise 8 {-}
+Reminder, you need to specify `nu` and `nv` to ensure full matrices U and V.
+```{r e16-8, message=FALSE, warning=FALSE}
+library(matrixcalc)
+
+X <- matrix(sample(1:6, size = 4*2, replace = TRUE), nrow=4, ncol=2)
+svdX <- svd(X, nu=nrow(X), nv=ncol(X)) # eq. 29
+U <- svdX$u
+S <- diag(svdX$d, nrow=nrow(X), ncol=ncol(X))
+V <- svdX$v
+
+longV1 <- solve(t(U%*%S%*%t(V))%*%U%*%S%*%t(V)) %*% t(U%*%S%*%t(V)) # eq. 30
+longV2 <- solve(V%*%t(S)%*%t(U)%*%U%*%S%*%t(V)) %*% t(U%*%S%*%t(V)) # eq. 31
+longV3 <- solve(V%*%t(S)%*%S%*%t(V)) %*% t(U%*%S%*%t(V)) # eq. 32
+longV4 <- V %*% matrixcalc::matrix.power(t(S) %*% S, -1) %*% t(V)%*%V%*%t(S)%*%t(U) # eq. 33 
+
+MPpinv <- pracma::pinv(X) # eq. 34
+```
