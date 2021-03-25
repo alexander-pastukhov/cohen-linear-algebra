@@ -668,4 +668,64 @@ ggplot(data=NULL, aes(x=cns, y=avediffs)) +
   xlab("Cond. number") + 
   ylab(expression(paste(Delta, lamda)))
 ```
+## Chapter 17
+### Exercise 1 {-}
+```{r e17-1, message=FALSE, warning=FALSE}
+library(plotly)
 
+A <- matrix(c(-2, 3, 2, 8), nrow=2, ncol=2, byrow=TRUE)
+vi <- seq(-2, 2, step=0.1)
+quadform <- matrix(0, nrow=length(vi), ncol=length(vi))
+
+for(i in 1:length(vi)){
+  for(j in 1:length(vi)){
+    v <- matrix(c(vi[i], vi[j]), ncol=1)
+    quadform[i, j] <- t(v) %*% A %*% v / (t(v) %*% v)
+  }
+}
+  
+plot_ly(z = quadform, type = "surface")
+```
+
+### Exercise 2 {-}
+```{r e17-2, message=FALSE, warning=FALSE}
+n <- 4
+nIterations <- 500
+defcat <- rep(0, nIterations)
+
+for(iteri in 1:nIterations){
+  # create matrix
+  A <- matrix(sample(-10:10, size=n^2, replace=TRUE), nrow=n, ncol=n)
+  e <- eigen(A)$values
+  while (is.complex(e)){
+    A <- matrix(sample(-10:10, size=n^2, replace=TRUE), nrow=n, ncol=n)
+    e <- eigen(A)$values
+  }
+  
+  # "zero" threshold (from rank)
+  t <- n * pracma::eps(max(svd(A)$d))
+  
+  # test definiteness
+  if (all(sign(e) == 1)) {
+    defcat[iteri] <- 1 # pos. def
+  }
+  else if (all(sign(e)>-1 & (sum(abs(e)<t)>0))){
+    defcat[iteri] <- 2 # pos. semidef
+  }
+  else if (all(sign(e)<1 & (sum(abs(e)<t)>0))){
+    defcat[iteri] <- 4 # neg. semidef
+  }
+  else if (all(sign(e) == -1)) {
+    defcat[iteri] <- 5 # neg. def
+  }
+  else {
+    defcat[iteri] <- 3 # indefinite
+  }
+}
+
+# print out summary
+for(i in 1:5)
+{
+  print(sprintf("cat %d: %d", i, sum(defcat == i)))
+}
+```

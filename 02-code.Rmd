@@ -401,3 +401,12 @@ condnum <- max(s) / min(s)
 print(c(condnum, pracma::cond(A)))
 ```
 
+## Chapter 17 {-}
+
+### Code block 17.1/17.2 {-}
+```{r cb17-1/2}
+m <- 4
+A <- matrix(rnorm(n=m^2), nrow=m, ncol=m)
+v <- matrix(rnorm(n=m), nrow=1, ncol=m)
+v %*% A %*% t(v)
+```
