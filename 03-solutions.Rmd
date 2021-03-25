@@ -729,3 +729,18 @@ for(i in 1:5)
   print(sprintf("cat %d: %d", i, sum(defcat == i)))
 }
 ```
+
+## Chapter 18 {-}
+### Exercise 1 {-}
+```{r e18-1, message=FALSE, warning=FALSE}
+n <- 200
+X <- matrix(rnorm(n*4), nrow=n, ncol=4) # data
+X <- apply(X, MARGIN=2, FUN=scale, scale=FALSE) # mean-center
+covM <- t(X) %*% X / (n-1) # covariance
+stdM <- solve(diag(apply(X, MARGIN=2, FUN=sd))) # stdevs
+corM <- stdM %*% t(X) %*% X %*% stdM / (n - 1) # R
+
+# compare ours against R's
+print(round(covM - cov(X), 3))
+print(round(corM - cor(X), 3))
+```
