@@ -2,7 +2,7 @@
 
 ## Chapter 2 {-}
 
-```{r}
+```{r e02-1, message=FALSE, warning=FALSE}
 library(ggplot2)
 v <- c(1, 2)
 s <- rnorm(10)
@@ -23,7 +23,7 @@ ggplot(data=all_vectors, aes(x=x, y=y, xend=xend, yend=yend, color=Vector)) +
 ## Chapter 3 {-}
 
 ### Exercise 1 {-}
-```{r}
+```{r e03-1}
 v1 <- c(1, 2, 3, 4, 5)
 v2 <- c(2, 3, 4, 5, 6)
 v3 <- c(3, 4, 5, 6, 7)
@@ -33,14 +33,14 @@ result <- v1 * w[1] + v2 * w[2] + v3* w[3]
 
 ### Exercise 2 {-}
 
-```{r}
+```{r e03-2}
 v <- c(7, 4, -5, 8, 3)
 o <- rep(1, length(v))
 ave <- pracma::dot(v, o) / length(v)
 ```
 
 ### Exercise 3 {-}
-```{r}
+```{r e03-3}
 v <- c(7, 4, -5, 8, 3)
 w <- runif(length(v))
 wAve <- pracma::dot(v, w / sum(w))
@@ -49,7 +49,7 @@ wAve <- pracma::dot(v, w / sum(w))
 ## Chapter 5 {-}
 
 ### Exercise 1 {-}
-```{r}
+```{r e05-1}
 A <- matrix(runif(n=4*2), nrow=4, ncol=2)
 B <- matrix(runif(n=4*2), nrow=4, ncol=2)
 C <- matrix(NA, nrow=2, ncol=2)
@@ -61,24 +61,27 @@ for(coli in 1:2){
 ```
 
 ### Exercise 2 {-}
-```{r}
+```{r e05-2}
 A <- matrix(runif(n=4*4), nrow=4, ncol=4)
 Al <- pracma::tril(A)
 S <- Al + t(Al)
 ```
 
 ### Exercise 3 {-}
-```{r}
+```{r e05-3}
 D <- matrix(0, nrow=4, ncol=8)
 for(d in 1:min(dim(D))){
   D[d, d] <- d
 }
+
+# or
+D <- diag(1:4, nrow=4, ncol=8)
 ```
 
 ## Chapter 6 {-}
 
 ### Exercise 1 {-}
-```{r}
+```{r e06-1}
 A <- matrix(runif(n=2*4), nrow=2, ncol=4)
 B <- matrix(runif(n=4*3), nrow=4, ncol=3)
 C1 <- matrix(0, nrow=2, ncol=3)
@@ -89,7 +92,7 @@ C1 - A %*% B
 ```
 
 ### Exercise 2 {-}
-```{r}
+```{r e06-2}
 D <- diag(1:4)
 A <- matrix(runif(n=4*4), nrow=4, ncol=4)
 C1 <- D * A
@@ -99,7 +102,7 @@ print(diag(C2))
 ```
 
 ### Exercise 3 {-}
-```{r}
+```{r e06-3}
 A <- diag(runif(3))
 C1 <- (t(A) + A) / 2
 C2 <- t(A) %*% A
@@ -108,7 +111,7 @@ C1 - sqrt(C2)
 
 ### Exercise 4 {-}
 Note that `norm()` requires a matrix as an input, therefore, we convert an atomic vector to a matrix for the norm computation.
-```{r}
+```{r e06-4}
 m <- 5
 A <- matrix(runif(n=m*m), nrow=m, ncol=m)
 v <- runif(n=m)
@@ -120,14 +123,14 @@ RHS - LHS # should always be positive
 ## Chapter 7 {-}
 
 ### Exercise 1 {-}
-```{r}
+```{r e07-1}
 A <- matrix(runif(n=9*2), nrow=9, ncol=2)
 B <- matrix(runif(n=2*16), nrow=2, ncol=16)
 C <- A %*% B
 ```
 
 ### Exercise 2 {-}
-```{r}
+```{r e07-2}
 Z <- matrix(0, nrow=5, ncol=5)
 N <- matrix(runif(5 * 5), nrow=5, ncol=5)
 ZN <-  Z + N * .Machine$double.eps * 1e-307
@@ -138,7 +141,7 @@ print(norm(ZN, type = "F"))
 
 ## Chapter 8 {-}
 ### Exercise 1 {-}
-```{r}
+```{r e08-1}
 A <- matrix(runif(n=4*3), nrow=4, ncol=3) %*% matrix(runif(n=3*4), nrow=3, ncol=4)
 B <- matrix(runif(n=4*3), nrow=4, ncol=3) %*% matrix(runif(n=3*4), nrow=3, ncol=4)
 n <- pracma::nullspace(A)
@@ -147,7 +150,7 @@ print(A %*% B %*% n) # not zeros vector
 ```
 
 ### Exercise 2 {-}
-```{r}
+```{r e08-2}
 A <- matrix(runif(n=16*9), nrow=16, ncol=9) %*% matrix(runif(n=9*11), nrow=9, ncol=11)
 rn <- pracma::nullspace(A)
 ln <- pracma::nullspace(t(A))
@@ -159,15 +162,16 @@ print(ncol(ln) + r)
 ## Chapter 9 {-}
 ### Exercise 1 {-}
 Base R does not implement Hermitian transpose directly and you are advised to compute it via `Conj(t(A))`, see _Notes_ for [t()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/t.html function.
-```{r}
+```{r e09-1}
 U <- 0.5 * matrix(c(1+1i, 1-1i, 1-1i, 1+1i), nrow=2, ncol=2)
 print(U %*% Conj(t(U))) # Hermitian
 print(U %*% t(U)) # not Hermitian
 ```
+
 ### Exercise 2 {-}
 In contrast to Matlab, a complex matrix
 [isSymmetric()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/isSymmetric.html) only if it is Hermitian.
-```{r}
+```{r e09-2}
 r <- matrix(runif(n=3*3), nrow=3, ncol=3)
 im <- matrix(runif(n=3*3), nrow=3, ncol=3)
 A <- r + im * 1i
@@ -179,14 +183,14 @@ isSymmetric(A2)
 
 ## Chapter 10 {-}
 ### Exercise 1 {-}
-```{r}
+```{r e10-1}
 A <- matrix(c(2, 0, -3, 3, 1, 4, 1, 0, -1), nrow=3, byrow=TRUE)
 x <- matrix(c(2, 3, 4), ncol=1)
 b <- A %*% x
 ```
 
 ### Exercise 2 {-}
-```{r}
+```{r e10-2}
 A <- matrix(runif(n=3*6), nrow=3, ncol=6)
 pracma::rref(A)
 ```
@@ -201,7 +205,7 @@ print(b^nrow(A) * det(A))
 ```
 
 ### Exercise 2 {-}
-```{r e11-2}
+```{r e11-2, message=FALSE, warning=FALSE}
 library(ggplot2)
 
 ns <- 3:30
@@ -337,7 +341,7 @@ betaScaled <- beta / apply(X, MARGIN=2, FUN=sd)
 ```
 
 ### Exercise 4 {-}
-```{r e14-4}
+```{r e14-4, message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
 library(tidyr)
@@ -392,7 +396,7 @@ V <- eigenA$vectors
 ```
 
 ### Exercise 3 {-}
-```{r e15-3}
+```{r e15-3, message=FALSE, warning=FALSE}
 library(dplyr)
 library(ggplot2)
 library(patchwork)
@@ -404,26 +408,22 @@ H <- pracma::hankel(v, lstrow)
 eigH <- eigen(H)
 V <- eigH$vectors[, order(eigH$values, decreasing=TRUE)]
 
-
 # the matrix
-dfH <- melt(H)
-
 plotH <- 
-  ggplot(data=dfH, aes(x=1-Var1, y=Var2)) + 
+  ggplot(data=reshape2::melt(H), aes(x=1-Var1, y=Var2)) + 
   geom_raster(aes(fill=value), show.legend=FALSE) + 
   labs(title="Hankel matrix") + 
   coord_equal() + xlab("") + ylab("")
   
 
 # eigenvector matrix
-dfV <- melt(V)
 plotV <- 
-  ggplot(data=dfV, aes(x=Var2, y=Var1)) + 
+  ggplot(data=reshape2::melt(V), aes(x=Var2, y=Var1)) + 
   geom_raster(aes(fill=value), show.legend=FALSE) + 
   labs(title="Eigenvector matrix") + 
   coord_equal() + xlab("") + ylab("")
 
-# a few evecs
+# a few eigenvectors
 dfV <- 
   data.frame(t(V)) %>%
   dplyr::slice_head(n=4) %>%
@@ -460,6 +460,7 @@ economySVD <- svd(A)
 cat(sprintf("Full SVD: (%d, %d), %d, (%d, %d)\n", nrow(fullSVD$u), ncol(fullSVD$u), length(fullSVD$d), nrow(fullSVD$v), ncol(fullSVD$v)))
 cat(sprintf("Economy : (%d, %d), %d, (%d, %d)\n", nrow(economySVD$u), ncol(economySVD$u), length(economySVD$d), nrow(economySVD$v), ncol(economySVD$v)))
 ```
+
 ### Exercise 2 {-}
 Note that [eigen()]() sorts eigenvalues and eigenvectors, so sorting is redundant and can be skipped (but I kept it to match the original code).
 ```{r e16-2}
@@ -481,7 +482,7 @@ svdA <- svd(A) # svd
 ```
 
 ### Exercise 3 {-}
-```{r e16-3}
+```{r e16-3, message=FALSE, warning=FALSE}
 library(ggplot2)
 library(patchwork)
 library(RColorBrewer)
@@ -506,7 +507,7 @@ for(i in 1:3) {
     labs(title=sprintf("Layer %d", i)) +
     coord_equal() + sc
   
-  lowrank <- matrix(svdA$u[, 1:i], ncol=i) %*% S[1:i,1:i] %*% matrix(svdA$v[1:i,], nrow=i)
+  lowrank <- matrix(svdA$u[, 1:i], ncol=i) %*% S[1:i,1:i] %*% t(svdA$v)[1:i,]
   lowrank_plots[[i]] <- 
     ggplot(data=reshape2::melt(t(lowrank)), aes(x=Var1, y=Var2, fill=value)) + 
     geom_tile(show.legend=FALSE) + theme_void() +
@@ -553,7 +554,7 @@ pracma::cond(A)
 ```
 
 ### Exercise 5 {-}
-```{r e16-5}
+```{r e16-5, message=FALSE, warning=FALSE}
 library(imager)
 
 rankN <- 20
