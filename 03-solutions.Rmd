@@ -569,3 +569,25 @@ lowrank <- picSVD$u[, 1:rankN] %*% S[1:rankN, 1:rankN] %*% t(picSVD$v)[1:rankN,]
 
 plot(imager::as.cimg(lowrank), axes=FALSE)
 ```
+
+### Exercise 6 {-}
+```{r e16-6, message=FALSE, warning=FALSE}
+library(imager)
+
+# convert to percent explained
+s <- 100 * picSVD$d / sum(picSVD$d)
+ggplot(data=NULL, aes(x=1:100, y=s[1:100])) + 
+  geom_line() +
+  geom_point() +
+  xlab("Component number") +
+  ylab("Pct variance explains")
+
+thresh <- 4 # threshold in percent
+comps <- s > thresh # comps greater than X%
+lowrank <- picSVD$u[, comps] %*% S[comps, comps] %*% t(picSVD$v)[comps,]
+
+layout(t(c(1,2)))
+plot(picture, axes=FALSE, main="Original")
+plot(as.cimg(lowrank), axes=FALSE, main=sprintf("%s comps with > %g%%", sum(comps), thresh))
+```
+
