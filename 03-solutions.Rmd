@@ -627,3 +627,45 @@ longV4 <- V %*% matrixcalc::matrix.power(t(S) %*% S, -1) %*% t(V)%*%V%*%t(S)%*%t
 
 MPpinv <- pracma::pinv(X) # eq. 34
 ```
+
+### Exercise 9 {-}
+```{r e16-9, message=FALSE, warning=FALSE}
+k <- 5
+n <- 13
+a <- pracma::pinv(matrix(1, nrow=n, ncol=1) * k)
+a - 1 / (k * n) # check for zeros
+```
+
+### Exercise 10 {-}
+```{r e16-10, message=FALSE, warning=FALSE}
+M <- 10
+cns <- seq(10, 1e10, length.out=30)
+avediffs <- rep(0, length(cns))
+
+# loop over condition numbers  
+for(condi in 1:length(cns)){
+  # create A
+  U <- qr.Q(qr(matrix(rnorm(M^2), nrow=M, ncol=M)))
+  V <- qr.Q(qr(matrix(rnorm(M^2), nrow=M, ncol=M)))
+  S <- diag(cns[condi], nrow=M, ncol=M)
+  A <- U %*% S %*% t(V) # construct matrix 
+
+  # create B
+  U <- qr.Q(qr(matrix(rnorm(M^2), nrow=M, ncol=M)))
+  V <- qr.Q(qr(matrix(rnorm(M^2), nrow=M, ncol=M)))
+  S <- diag(cns[condi], nrow=M, ncol=M)
+  B <- U %*% S %*% t(V) # construct matrix 
+  
+  # GEDs and sort
+  l1 <- sort(eigen(A)$values)
+  l2 <- sort(eigen(B)$values)
+  
+  avediffs[condi] <- mean(abs(l1-l2))
+}
+
+ggplot(data=NULL, aes(x=cns, y=avediffs)) + 
+  geom_line() + 
+  xlab("Cond. number") + 
+  ylab(expression(paste(Delta, lamda)))
+```
+
