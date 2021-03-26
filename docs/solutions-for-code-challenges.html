@@ -457,9 +457,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb83-3"><a href="solutions-for-code-challenges.html#cb83-3"></a>C1 &lt;-<span class="st"> </span>D <span class="op">*</span><span class="st"> </span>A</span>
 <span id="cb83-4"><a href="solutions-for-code-challenges.html#cb83-4"></a>C2 &lt;-<span class="st"> </span>D <span class="op">%*%</span><span class="st"> </span>A</span>
 <span id="cb83-5"><a href="solutions-for-code-challenges.html#cb83-5"></a><span class="kw">print</span>(<span class="kw">diag</span>(C1))</span></code></pre></div>
-<pre><code>## [1] 0.4407820 0.4891542 1.0255423 0.1605507</code></pre>
+<pre><code>## [1] 0.9799352 1.2875747 0.1189195 3.8517034</code></pre>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="solutions-for-code-challenges.html#cb85-1"></a><span class="kw">print</span>(<span class="kw">diag</span>(C2))</span></code></pre></div>
-<pre><code>## [1] 0.4407820 0.4891542 1.0255423 0.1605507</code></pre>
+<pre><code>## [1] 0.9799352 1.2875747 0.1189195 3.8517034</code></pre>
 </div>
 <div id="exercise-3-2" class="section level3 unnumbered" number="">
 <h3>Exercise 3</h3>
@@ -481,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb89-4"><a href="solutions-for-code-challenges.html#cb89-4"></a>LHS &lt;-<span class="st"> </span><span class="kw">norm</span>(A <span class="op">%*%</span><span class="st"> </span>v, <span class="dt">type =</span> <span class="st">&quot;F&quot;</span>)</span>
 <span id="cb89-5"><a href="solutions-for-code-challenges.html#cb89-5"></a>RHS &lt;-<span class="st"> </span><span class="kw">norm</span>(A, <span class="dt">type =</span> <span class="st">&quot;F&quot;</span>) <span class="op">*</span><span class="st"> </span><span class="kw">norm</span>(<span class="kw">matrix</span>(v), <span class="dt">type=</span><span class="st">&quot;F&quot;</span>)</span>
 <span id="cb89-6"><a href="solutions-for-code-challenges.html#cb89-6"></a>RHS <span class="op">-</span><span class="st"> </span>LHS <span class="co"># should always be positive</span></span></code></pre></div>
-<pre><code>## [1] 0.3911112</code></pre>
+<pre><code>## [1] 0.7464557</code></pre>
 </div>
 </div>
 <div id="chapter-7-1" class="section level2 unnumbered" number="">
@@ -501,9 +501,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] 0</code></pre>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="solutions-for-code-challenges.html#cb94-1"></a><span class="kw">print</span>(pracma<span class="op">::</span><span class="kw">Rank</span>(ZN))</span></code></pre></div>
 <pre><code>## Warning in pracma::Rank(ZN): Rank calculation may be problematic.</code></pre>
-<pre><code>## [1] 4</code></pre>
+<pre><code>## [1] 5</code></pre>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="solutions-for-code-challenges.html#cb97-1"></a><span class="kw">print</span>(<span class="kw">norm</span>(ZN, <span class="dt">type =</span> <span class="st">&quot;F&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] 5.434722e-323</code></pre>
+<pre><code>## [1] 6.422853e-323</code></pre>
 </div>
 </div>
 <div id="chapter-8-1" class="section level2 unnumbered" number="">
@@ -514,17 +514,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb99-2"><a href="solutions-for-code-challenges.html#cb99-2"></a>B &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">4</span><span class="op">*</span><span class="dv">3</span>), <span class="dt">nrow=</span><span class="dv">4</span>, <span class="dt">ncol=</span><span class="dv">3</span>) <span class="op">%*%</span><span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">3</span><span class="op">*</span><span class="dv">4</span>), <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">4</span>)</span>
 <span id="cb99-3"><a href="solutions-for-code-challenges.html#cb99-3"></a>n &lt;-<span class="st"> </span>pracma<span class="op">::</span><span class="kw">nullspace</span>(A)</span>
 <span id="cb99-4"><a href="solutions-for-code-challenges.html#cb99-4"></a><span class="kw">print</span>(B <span class="op">%*%</span><span class="st"> </span>A <span class="op">%*%</span><span class="st"> </span>n) <span class="co"># zeros vector</span></span></code></pre></div>
-<pre><code>##               [,1]
-## [1,]  5.551115e-17
-## [2,] -5.551115e-17
-## [3,] -1.665335e-16
-## [4,]  1.110223e-16</code></pre>
+<pre><code>##              [,1]
+## [1,] 2.220446e-16
+## [2,] 4.440892e-16
+## [3,] 3.330669e-16
+## [4,] 2.220446e-16</code></pre>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="solutions-for-code-challenges.html#cb101-1"></a><span class="kw">print</span>(A <span class="op">%*%</span><span class="st"> </span>B <span class="op">%*%</span><span class="st"> </span>n) <span class="co"># not zeros vector</span></span></code></pre></div>
-<pre><code>##            [,1]
-## [1,] 0.22722870
-## [2,] 0.21246335
-## [3,] 0.05179135
-## [4,] 0.03917362</code></pre>
+<pre><code>##           [,1]
+## [1,] 0.4645256
+## [2,] 1.6952663
+## [3,] 1.4243485
+## [4,] 1.6511740</code></pre>
 </div>
 <div id="exercise-2-4" class="section level3 unnumbered" number="">
 <h3>Exercise 2</h3>
@@ -580,10 +580,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Exercise 2</h3>
 <div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="solutions-for-code-challenges.html#cb116-1"></a>A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">3</span><span class="op">*</span><span class="dv">6</span>), <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">6</span>)</span>
 <span id="cb116-2"><a href="solutions-for-code-challenges.html#cb116-2"></a>pracma<span class="op">::</span><span class="kw">rref</span>(A)</span></code></pre></div>
-<pre><code>##      [,1] [,2] [,3]       [,4]      [,5]       [,6]
-## [1,]    1    0    0  0.4892414  1.882597  1.3067571
-## [2,]    0    1    0 -0.5072360  1.562761  0.2554863
-## [3,]    0    0    1  0.8116224 -1.923485 -0.2257580</code></pre>
+<pre><code>##      [,1] [,2] [,3]      [,4]      [,5]       [,6]
+## [1,]    1    0    0  1.301160  2.483825 -0.2037101
+## [2,]    0    1    0  3.900386  5.015065 -3.7775125
+## [3,]    0    0    1 -3.849670 -4.273280  4.7587403</code></pre>
 </div>
 </div>
 <div id="chapter-11-1" class="section level2 unnumbered" number="">
@@ -593,9 +593,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="solutions-for-code-challenges.html#cb118-1"></a>A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">sample</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">size=</span><span class="dv">4</span><span class="op">*</span><span class="dv">4</span>, <span class="dt">replace=</span><span class="ot">TRUE</span>), <span class="dt">nrow=</span><span class="dv">4</span>, <span class="dt">ncol=</span><span class="dv">4</span>)</span>
 <span id="cb118-2"><a href="solutions-for-code-challenges.html#cb118-2"></a>b &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">10</span><span class="op">:-</span><span class="dv">1</span>, <span class="dt">size=</span><span class="dv">1</span>)</span>
 <span id="cb118-3"><a href="solutions-for-code-challenges.html#cb118-3"></a><span class="kw">print</span>(<span class="kw">det</span>(b <span class="op">*</span><span class="st"> </span>A))</span></code></pre></div>
-<pre><code>## [1] 159375</code></pre>
+<pre><code>## [1] -32520000</code></pre>
 <div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="solutions-for-code-challenges.html#cb120-1"></a><span class="kw">print</span>(b<span class="op">^</span><span class="kw">nrow</span>(A) <span class="op">*</span><span class="st"> </span><span class="kw">det</span>(A))</span></code></pre></div>
-<pre><code>## [1] 159375</code></pre>
+<pre><code>## [1] -32520000</code></pre>
 </div>
 <div id="exercise-2-7" class="section level3 unnumbered" number="">
 <h3>Exercise 2</h3>

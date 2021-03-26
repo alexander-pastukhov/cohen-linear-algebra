@@ -562,7 +562,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Code block 6.11/6.12</h3>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="code.html#cb32-1"></a>A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">4</span><span class="op">*</span><span class="dv">3</span>), <span class="dt">nrow=</span><span class="dv">4</span>, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
 <span id="cb32-2"><a href="code.html#cb32-2"></a><span class="kw">norm</span>(A, <span class="dt">type=</span><span class="st">&quot;F&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] 2.226515</code></pre>
+<pre><code>## [1] 2.097149</code></pre>
 </div>
 </div>
 <div id="chapter-7" class="section level2 unnumbered" number="">
@@ -603,7 +603,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         warning(&quot;Rank calculation may be problematic.&quot;)
 ##     return(r2)
 ## }
-## &lt;bytecode: 0x0000000015c31328&gt;
+## &lt;bytecode: 0x0000000015c3e448&gt;
 ## &lt;environment: namespace:pracma&gt;</code></pre>
 <p>Source code for <code>rankMatrix()</code> function from <em>Matrix</em> library.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="code.html#cb39-1"></a>Matrix<span class="op">::</span>rankMatrix</span></code></pre></div>
@@ -677,7 +677,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##         NA
 ##     else tol)
 ## }
-## &lt;bytecode: 0x00000000200e59f8&gt;
+## &lt;bytecode: 0x00000000204f0388&gt;
 ## &lt;environment: namespace:Matrix&gt;</code></pre>
 </div>
 </div>
@@ -688,10 +688,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="code.html#cb41-1"></a>A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">3</span><span class="op">*</span><span class="dv">4</span>), <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">4</span>)</span>
 <span id="cb41-2"><a href="code.html#cb41-2"></a>pracma<span class="op">::</span><span class="kw">nullspace</span>(A)</span></code></pre></div>
 <pre><code>##             [,1]
-## [1,] -0.52625099
-## [2,]  0.03707307
-## [3,] -0.60824506
-## [4,]  0.59306275</code></pre>
+## [1,] -0.55208467
+## [2,]  0.67249530
+## [3,]  0.48849457
+## [4,]  0.06576957</code></pre>
 </div>
 </div>
 <div id="chapter-9" class="section level2 unnumbered" number="">
@@ -709,9 +709,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb44-2"><a href="code.html#cb44-2"></a>im &lt;-<span class="st"> </span><span class="kw">sample</span>(<span class="op">-</span><span class="dv">3</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb44-3"><a href="code.html#cb44-3"></a>Z &lt;-<span class="st"> </span>r <span class="op">+</span><span class="st"> </span>im <span class="op">*</span><span class="st"> </span>1i</span>
 <span id="cb44-4"><a href="code.html#cb44-4"></a><span class="kw">print</span>(Z)</span></code></pre></div>
-<pre><code>## [1] 3+0i 1+0i 1+2i</code></pre>
+<pre><code>## [1] -3-3i  1+4i  3+3i</code></pre>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="code.html#cb46-1"></a><span class="kw">print</span>(<span class="kw">Conj</span>(Z))</span></code></pre></div>
-<pre><code>## [1] 3+0i 1+0i 1-2i</code></pre>
+<pre><code>## [1] -3+3i  1-4i  3-3i</code></pre>
 </div>
 <div id="code-block-9.59.6" class="section level3 unnumbered" number="">
 <h3>Code block 9.5/9.6</h3>
@@ -745,9 +745,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Code block 10.3/10.4</h3>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="code.html#cb52-1"></a>A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">2</span><span class="op">*</span><span class="dv">4</span>), <span class="dt">nrow=</span><span class="dv">2</span>, <span class="dt">ncol=</span><span class="dv">4</span>)</span>
 <span id="cb52-2"><a href="code.html#cb52-2"></a>pracma<span class="op">::</span><span class="kw">rref</span>(A)</span></code></pre></div>
-<pre><code>##      [,1] [,2]       [,3]      [,4]
-## [1,]    1    0  0.5710462 0.7131498
-## [2,]    0    1 -0.1451739 0.3724851</code></pre>
+<pre><code>##      [,1] [,2]      [,3]      [,4]
+## [1,]    1    0  2.157181  1.754766
+## [2,]    0    1 -1.707549 -2.123415</code></pre>
 </div>
 </div>
 <div id="chapter-11" class="section level2 unnumbered" number="">
@@ -756,7 +756,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>Code block 11.1/11.2</h3>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="code.html#cb54-1"></a>A &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">runif</span>(<span class="dt">n=</span><span class="dv">3</span><span class="op">*</span><span class="dv">3</span>), <span class="dt">nrow=</span><span class="dv">3</span>, <span class="dt">ncol=</span><span class="dv">3</span>)</span>
 <span id="cb54-2"><a href="code.html#cb54-2"></a><span class="kw">det</span>(A)</span></code></pre></div>
-<pre><code>## [1] 0.06305531</code></pre>
+<pre><code>## [1] 0.2765355</code></pre>
 </div>
 </div>
 <div id="chapter-12" class="section level2 unnumbered" number="">
@@ -801,10 +801,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb62-2"><a href="code.html#cb62-2"></a>A[<span class="dv">2</span>, ] &lt;-<span class="st"> </span>A[<span class="dv">1</span>, ]</span>
 <span id="cb62-3"><a href="code.html#cb62-3"></a>Api &lt;-<span class="st"> </span>pracma<span class="op">::</span><span class="kw">pinv</span>(A)</span>
 <span id="cb62-4"><a href="code.html#cb62-4"></a>Api <span class="op">%*%</span><span class="st"> </span>A</span></code></pre></div>
-<pre><code>##            [,1]        [,2]        [,3]
-## [1,] 0.68405603  0.01263654  0.46471894
-## [2,] 0.01263654  0.99949459 -0.01858697
-## [3,] 0.46471894 -0.01858697  0.31644938</code></pre>
+<pre><code>##             [,1]        [,2]       [,3]
+## [1,]  0.62174449 -0.48151760 0.05761148
+## [2,] -0.48151760  0.38703022 0.07333917
+## [3,]  0.05761148  0.07333917 0.99122529</code></pre>
 </div>
 </div>
 <div id="chapter-13" class="section level2 unnumbered" number="">
@@ -864,7 +864,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb70-4"><a href="code.html#cb70-4"></a></span>
 <span id="cb70-5"><a href="code.html#cb70-5"></a><span class="co">#compare above with pracma::cond() </span></span>
 <span id="cb70-6"><a href="code.html#cb70-6"></a><span class="kw">print</span>(<span class="kw">c</span>(condnum, pracma<span class="op">::</span><span class="kw">cond</span>(A)))</span></code></pre></div>
-<pre><code>## [1] 14.13711 14.13711</code></pre>
+<pre><code>## [1] 13.12641 13.12641</code></pre>
 </div>
 </div>
 <div id="chapter-17" class="section level2 unnumbered" number="">
@@ -876,7 +876,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb72-3"><a href="code.html#cb72-3"></a>v &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">rnorm</span>(<span class="dt">n=</span>m), <span class="dt">nrow=</span><span class="dv">1</span>, <span class="dt">ncol=</span>m)</span>
 <span id="cb72-4"><a href="code.html#cb72-4"></a>v <span class="op">%*%</span><span class="st"> </span>A <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(v)</span></code></pre></div>
 <pre><code>##           [,1]
-## [1,] -1.686999</code></pre>
+## [1,] -2.010692</code></pre>
 
 </div>
 </div>
