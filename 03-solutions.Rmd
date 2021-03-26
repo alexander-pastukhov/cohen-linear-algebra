@@ -670,7 +670,7 @@ ggplot(data=NULL, aes(x=cns, y=avediffs)) +
 ```
 ## Chapter 17
 ### Exercise 1 {-}
-```{r e17-1, message=FALSE, warning=FALSE}
+```{r e17-1, eval=FALSE}
 library(plotly)
 
 A <- matrix(c(-2, 3, 2, 8), nrow=2, ncol=2, byrow=TRUE)
@@ -685,6 +685,9 @@ for(i in 1:length(vi)){
 }
   
 plot_ly(z = quadform, type = "surface")
+```
+```{r echo=FALSE}
+knitr::include_graphics(rep("images/e17-1.png"))
 ```
 
 ### Exercise 2 {-}
