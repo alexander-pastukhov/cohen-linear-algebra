@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>R-version of the code for “Linear Algebra: Theory, Intuition, Code” by Mike X Cohen</title>
+  <title>Function references | R-version of the code for “Linear Algebra: Theory, Intuition, Code” by Mike X Cohen</title>
   <meta name="description" content="R-version of the code for Linear Algebra: Theory, Intuition, Code by Mike X Cohen" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="R-version of the code for “Linear Algebra: Theory, Intuition, Code” by Mike X Cohen" />
+  <meta property="og:title" content="Function references | R-version of the code for “Linear Algebra: Theory, Intuition, Code” by Mike X Cohen" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R-version of the code for “Linear Algebra: Theory, Intuition, Code” by Mike X Cohen" />
+  <meta name="twitter:title" content="Function references | R-version of the code for “Linear Algebra: Theory, Intuition, Code” by Mike X Cohen" />
   
   <meta name="twitter:description" content="R-version of the code for Linear Algebra: Theory, Intuition, Code by Mike X Cohen" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="solutions-for-code-challenges.html"/>
 
-<link rel="next" href="code.html"/>
 <script src="libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -361,35 +361,141 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R-version of the code for “Linear Algebra: Theory, Intuition, Code” by <em>Mike X Cohen</em></h1>
-<p class="author"><em>Alexander (Sasha) Pastukhov</em></p>
-<p class="date"><em>2021-03-26</em></p>
+<div id="function-references" class="section level1 unnumbered" number="">
+<h1>Function references</h1>
+<div id="c" class="section level2 unnumbered" number="">
+<h2>C</h2>
+<ul>
+<li>Complex numbers in R: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/complex.html">complex()</a></li>
+<li>Complex conjugate: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/complex.html">Conj()</a></li>
+<li>Concatenating matrices by columns <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html">cbind()</a> or rows <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html">rbind()</a></li>
+<li>Condition of matrix: <a href="https://rdrr.io/rforge/pracma/man/cond.html">pracma::cond()</a></li>
+<li>Cross product: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/crossprod.html">crossprod()</a></li>
+</ul>
 </div>
-<div id="introduction" class="section level1 unnumbered" number="">
-<h1>Introduction</h1>
-<p>This is an R-version of the code for <a href="https://www.amazon.com/Linear-Algebra-Theory-Intuition-Code/dp/9083136604">“Linear Algebra: Theory, Intuition, Code”</a> by <a href="http://www.mikexcohen.com/">Mike X Cohen</a>. I have tried to keep the code as close as possible to the original even if it went against the spirit of R. E.g., loops can be replaced with vectorized operations, tidyverse piping approach, or <code>apply()</code>/<code>replicate()</code>/<code>purrr::map()</code>. In most cases, I use <code>library::</code> disambiguation to make it easier to understand which function belongs to which package, instead of importing libraries via <code>library()</code>.</p>
-<div id="libraries-the-code-relies-upon" class="section level2 unnumbered" number="">
-<h2>Libraries the code relies upon</h2>
-<p>Matrix calculations</p>
+<div id="d" class="section level2 unnumbered" number="">
+<h2>D</h2>
 <ul>
-<li><a href="https://rdrr.io/cran/pracma/">pracma</a></li>
-<li><a href="https://rdrr.io/cran/geigen/">geigen</a> for generalized eigenvalues</li>
-<li><a href="https://rdrr.io/cran/matrixcalc/">matrixcalc</a> for raising matrix to the power</li>
+<li>Determinant: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/det.html">det()</a></li>
+<li>Diagonal: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html">diag()</a></li>
+<li>Dot product: <a href="https://rdrr.io/rforge/pracma/man/dot.html">pracma::dot()</a></li>
 </ul>
-<p><a href="https://tidyverse.org/">Tidyverse</a> packages for data wrangling, you can install all relevant packages (including ggplot2) via <code>install.packages("tidyverse")</code>.</p>
+</div>
+<div id="e" class="section level2 unnumbered" number="">
+<h2>E</h2>
 <ul>
-<li><a href="https://dplyr.tidyverse.org/">dplyr</a></li>
-<li><a href="https://tidyr.tidyverse.org/">tidyr</a></li>
-<li><a href="https://www.rdocumentation.org/packages/reshape2/versions/1.4.4">reshape2</a></li>
+<li>Eigenvalues and eigenvectors: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/eigen.html">eigen()</a></li>
 </ul>
-<p>Graphics</p>
+</div>
+<div id="g" class="section level2 unnumbered" number="">
+<h2>G</h2>
 <ul>
-<li><a href="https://ggplot2.tidyverse.org/">ggplot2</a> for plotting</li>
-<li><a href="https://plotly.com/r/">plotly</a> for 3D surface plot</li>
-<li><a href="https://patchwork.data-imaginist.com/">patchwork</a> to create a composite figure out of multiple plots</li>
-<li><a href="https://rdrr.io/cran/RColorBrewer/">RColorBrewer</a> for color schemes</li>
-<li><a href="https://dahtah.github.io/imager/">imager</a> for working with images</li>
+<li>Generalized Eigenvalues: <a href="https://rdrr.io/cran/geigen/man/geigen.html">giegen::geigen()</a></li>
+</ul>
+</div>
+<div id="h" class="section level2 unnumbered" number="">
+<h2>H</h2>
+<ul>
+<li>Hankel matrix: <a href="https://rdrr.io/rforge/pracma/man/hankel.html">pracma::hankel()</a></li>
+</ul>
+</div>
+<div id="i" class="section level2 unnumbered" number="">
+<h2>I</h2>
+<ul>
+<li>Inverse of a matrix: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/solve.html">solve()</a></li>
+</ul>
+</div>
+<div id="l" class="section level2 unnumbered" number="">
+<h2>L</h2>
+<ul>
+<li>Least-squares solution to a linear matrix equation: <a href="https://stat.ethz.ch/R-manual/R-patched/library/stats/html/lsfit.html">lsfit()</a></li>
+<li>Lower triangular part of a matrix: <a href="https://rdrr.io/rforge/pracma/man/tri.html">pracma::tril()</a> and <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html">lower.tri()</a> for logical indexes (excluding diagonal by default).</li>
+<li>LU decomposition: <a href="https://rdrr.io/cran/pracma/man/lu.html">pracma::lu()</a></li>
+</ul>
+</div>
+<div id="m" class="section level2 unnumbered" number="">
+<h2>M</h2>
+<ul>
+<li>Matrix, concatenating by columns <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html">cbind()</a> or rows <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/cbind.html">rbind()</a></li>
+<li>Matrix condition: <a href="https://rdrr.io/rforge/pracma/man/cond.html">pracma::cond()</a></li>
+<li>Matrix, creating: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/matrix.html">matrix()</a></li>
+<li>Matrix, determinant: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/det.html">det()</a></li>
+<li>Matrix diagonal: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/diag.html">diag()</a></li>
+<li>Matrix dimensions: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/dim.html">dim()</a></li>
+<li>Matrix eigenvalues and eigenvectors: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/eigen.html">eigen</a></li>
+<li>Matrix inverse: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/solve.html">solve()</a></li>
+<li>Matrix is symmetric (real valued) or Hermitian (complex values): <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/isSymmetric.html">isSymmetric()</a></li>
+<li>Matrix multiplication: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/matmult.html">%*%</a></li>
+<li>Matrix norm: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/norm.html">norm()</a></li>
+<li>Matrix to the power: <a href="https://www.rdocumentation.org/packages/matrixcalc/versions/1.0-3/topics/matrix.power">matrixcalc::matrix.power()</a></li>
+<li>Matrix pseudoinverse: <a href="https://rdrr.io/cran/pracma/man/pinv.html">pracma::pinv()</a></li>
+<li>Matrix rank: <a href="https://rdrr.io/rforge/pracma/man/rank.html">pracma::Rank()</a></li>
+<li>Matrix trace: <a href="https://rdrr.io/rforge/pracma/man/trace.html">pracma::Trace()</a></li>
+<li>Matrix, triangular parts. Lower <a href="https://rdrr.io/rforge/pracma/man/tri.html">pracma::tril()</a> and upper <a href="https://rdrr.io/rforge/pracma/man/tri.html">pracma::triu()</a>. Logical indexes (excluding diagonal by default): <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html">lower.tri()</a> and <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html">upper.tri()</a>.</li>
+</ul>
+</div>
+<div id="n" class="section level2 unnumbered" number="">
+<h2>N</h2>
+<ul>
+<li>Norm of matrix: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/norm.html">norm()</a></li>
+<li>Null space: <a href="https://rdrr.io/rforge/pracma/man/nullspace.html">pracma::nullspace()</a></li>
+</ul>
+</div>
+<div id="o" class="section level2 unnumbered" number="">
+<h2>O</h2>
+<ul>
+<li>Outer product: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/outer.html">outer()</a></li>
+</ul>
+</div>
+<div id="p" class="section level2 unnumbered" number="">
+<h2>P</h2>
+<ul>
+<li>Power function for matrix: <a href="https://www.rdocumentation.org/packages/matrixcalc/versions/1.0-3/topics/matrix.power">matrixcalc::matrix.power()</a></li>
+<li>Pseudoinverse: <a href="https://rdrr.io/cran/pracma/man/pinv.html">pracma::pinv()</a></li>
+</ul>
+</div>
+<div id="q" class="section level2 unnumbered" number="">
+<h2>Q</h2>
+<ul>
+<li>QR decomposition: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/qr.html">qr()</a>. To reconstruct Q, R, or X matrices see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/qraux.html">qr auxiliaries</a>.</li>
+</ul>
+</div>
+<div id="r" class="section level2 unnumbered" number="">
+<h2>R</h2>
+<ul>
+<li>Random numbers from a normal distribution: <a href="https://stat.ethz.ch/R-manual/R-patched/library/stats/html/Normal.html">rnorm()</a></li>
+<li>Random numbers from a uniform distribution: <a href="https://stat.ethz.ch/R-manual/R-patched/library/stats/html/Uniform.html">runif()</a></li>
+<li>Rank: <a href="https://rdrr.io/rforge/pracma/man/rank.html">pracma::Rank()</a></li>
+<li>Reduced Row Echelon Form: <a href="https://rdrr.io/rforge/pracma/src/R/rref.R">pracma::rref()</a></li>
+</ul>
+</div>
+<div id="s" class="section level2 unnumbered" number="">
+<h2>S</h2>
+<ul>
+<li>Sampling from list of numbers (used in the code to sample integers from a range): <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/sample.html">sample()</a></li>
+<li>Singular value decomposition: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/svd.html">svd()</a></li>
+</ul>
+</div>
+<div id="t" class="section level2 unnumbered" number="">
+<h2>T</h2>
+<ul>
+<li>Toeplitz matrix: <a href="https://stat.ethz.ch/R-manual/R-patched/library/stats/html/toeplitz.html">toeplitz()</a></li>
+<li>Trace: <a href="https://rdrr.io/rforge/pracma/man/trace.html">pracma::Trace()</a></li>
+<li>Transpose: <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/t.html">t()</a></li>
+<li>Triangular parts of matrix. Lower <a href="https://rdrr.io/rforge/pracma/man/tri.html">pracma::tril()</a> and upper <a href="https://rdrr.io/rforge/pracma/man/tri.html">pracma::triu()</a>. Logical indexes (excluding diagonal by default): <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html">lower.tri()</a> and <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html">upper.tri()</a>.</li>
+</ul>
+</div>
+<div id="u" class="section level2 unnumbered" number="">
+<h2>U</h2>
+<ul>
+<li>Upper triangular part of a matrix: <a href="https://rdrr.io/rforge/pracma/man/tri.html">pracma::triu()</a> and <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/lower.tri.html">upper.tri()</a> for logical indexes (excluding diagonal by default).</li>
+</ul>
+</div>
+<div id="v" class="section level2 unnumbered" number="">
+<h2>V</h2>
+<ul>
+<li>Vector, creating or converting to an atomic vector: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/c.html">c()</a></li>
+<li>Vector, converting to an atomic vector: <a href="https://stat.ethz.ch/R-manual/R-patched/library/base/html/vector.html">as.vector()</a></li>
 </ul>
 
 </div>
@@ -399,8 +505,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
+<a href="solutions-for-code-challenges.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="code.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,5 +1,0 @@
-prerequisites
-intro
-code
-chapter-2
-methods
