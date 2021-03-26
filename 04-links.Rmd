@@ -16,7 +16,7 @@
 
 ## E {-}
 
-* Eigenvalues and eigenvectors: [eigen](https://stat.ethz.ch/R-manual/R-devel/library/base/html/eigen.html)
+* Eigenvalues and eigenvectors: [eigen()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/eigen.html)
 
 ## G {-}
 
@@ -71,7 +71,7 @@
 
 ## Q {-}
 
-** QR decomposition: [qr()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/qr.html). To reconstruct Q, R, or X matrices see [qr auxiliaries](https://stat.ethz.ch/R-manual/R-devel/library/base/html/qraux.html).
+* QR decomposition: [qr()](https://stat.ethz.ch/R-manual/R-devel/library/base/html/qr.html). To reconstruct Q, R, or X matrices see [qr auxiliaries](https://stat.ethz.ch/R-manual/R-devel/library/base/html/qraux.html).
 
 ## R {-}
 
