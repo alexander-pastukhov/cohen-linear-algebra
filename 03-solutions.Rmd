@@ -747,3 +747,84 @@ corM <- stdM %*% t(X) %*% X %*% stdM / (n - 1) # R
 print(round(covM - cov(X), 3))
 print(round(corM - cor(X), 3))
 ```
+
+## Chapter 19 {-}
+### Exercise 1 {-}
+```{r e19-1, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# create data
+N <- 1000
+h <- rnorm(n=N, mean = seq(150, 190, length.out = N), sd=5)
+w <- h * .7 - 50 + rnorm(N, mean=0, sd=10)
+
+# covariance
+X <- cbind(h, w)
+X <- apply(X, MARGIN=2, scale, scale=FALSE)
+C <- t(X) %*% X / (length(h) - 1)
+
+# PCA
+eigC <- eigen(C)
+
+# sorting below is redundant in R, as values and vectors are presorted
+i <- order(eigC$values, decreasing=TRUE) 
+V <- eigC$vectors[, i]
+eigvals <- eigC$values[i]
+eigvals <- 100 * eigvals / sum(eigvals)
+scores <- X %*% V # not used, but useful code
+
+# plot data with PCs
+ggplot(data=NULL, aes(x = X[, 1], y = X[, 2])) + 
+  geom_point() + 
+  geom_segment(aes(x=0, y=0, xend=V[1, 1] * 45, yend=V[2, 1] * 45), color="red", size=2) +
+  geom_segment(aes(x=0, y=0, xend=V[1, 2] * 25, yend=V[2, 2] * 25), color="red", size=2) +
+  scale_x_continuous(name="Height", limits=c(-50, 50)) + 
+  scale_y_continuous(name="Weight", limits=c(-50, 50)) + 
+  coord_equal()
+```
+
+### Exercise 2 {-}
+```{r e19-2, message=FALSE, warning=FALSE}
+X <- apply(X, MARGIN=2, scale, scale=FALSE)
+svdX <- svd(X, nu=nrow(X), nv=ncol(X))
+scores <- X %*% svdX$v
+s <- diag(svdX$d)^2 / (nrow(X) - 1)
+s <- 100 * s / sum(s) # s == eigvals
+```
+
+### Exercise 3 {-}
+```{r e19-3, message=FALSE, warning=FALSE}
+library(ggplot2)
+
+# create data
+N <- 1000
+h <- rnorm(n=N, mean = seq(150, 190, length.out = N), sd=5)
+w <- h * .7 - 50 + rnorm(N, mean=0, sd=10)
+
+# covariance
+X <- cbind(h, w)
+C <- t(X) %*% X / (length(h) - 1)
+
+# PCA
+eigC <- eigen(C)
+
+# sorting below is redundant in R, as values and vectors are presorted
+i <- order(eigC$values, decreasing=TRUE) 
+V <- eigC$vectors[, i]
+eigvals <- eigC$values[i]
+eigvals <- 100 * eigvals / sum(eigvals)
+scores <- X %*% V # not used, but useful code
+
+# now we center the data
+X <- apply(X, MARGIN=2, scale, scale=FALSE)
+
+# plot data with PCs
+ggplot(data=NULL, aes(x = X[, 1], y = X[, 2])) + 
+  geom_point() + 
+  geom_segment(aes(x=0, y=0, xend=V[1, 1] * 45, yend=V[2, 1] * 45), color="red", size=2) +
+  geom_segment(aes(x=0, y=0, xend=V[1, 2] * 25, yend=V[2, 2] * 25), color="red", size=2) +
+  scale_x_continuous(name="Height", limits=c(-50, 50)) + 
+  scale_y_continuous(name="Weight", limits=c(-50, 50)) + 
+  coord_equal()
+  
+```
